@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Ajout indispensable pour GitHub Pages
+  output: 'export',
+  basePath: '/LVMH_Hackathon', 
   typescript: {
     ignoreBuildErrors: true,
   },
