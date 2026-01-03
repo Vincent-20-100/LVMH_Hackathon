@@ -5,6 +5,8 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Montserrat } from "next/font/google"
 
+const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
   title: "Digital Product Passport | Louis Vuitton",
   description: "Authentic Louis Vuitton leather goods - Certificate of Authenticity and Product Traceability",
   generator: "v0.app",
-  icons:{icon: "favicon-32x32.png"}
+  icons:{icon: getAssetPath("favicon-32x32.png")}
 }
 
 export const viewport: Viewport = {

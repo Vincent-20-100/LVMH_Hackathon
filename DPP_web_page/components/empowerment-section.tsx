@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { Play, MapPin, Calendar, ChevronRight } from "lucide-react"
 
+const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
+
 const serviceLedger = [
   { date: "Sept 2024", service: "Initial Quality Inspection", status: "Completed", location: "Paris Atelier" },
   { date: "—", service: "First Leather Conditioning", status: "Recommended", location: "Schedule service" },
@@ -30,7 +32,7 @@ export function EmpowermentSection() {
             onClick={() => setIsVideoPlaying(!isVideoPlaying)}
           >
             <img
-              src="artisan-hands-crafting-leather-luxury-workshop-cin.jpg"
+              src={getAssetPath("artisan-hands-crafting-leather-luxury-workshop-cin.jpg")}
               alt="Leather Care Savoir-Faire"
               className="w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
             />
