@@ -30,7 +30,7 @@ export function EmpowermentSection() {
             onClick={() => setIsVideoPlaying(!isVideoPlaying)}
           >
             <img
-              src="/artisan-hands-crafting-leather-luxury-workshop-cin.jpg"
+              src="artisan-hands-crafting-leather-luxury-workshop-cin.jpg"
               alt="Leather Care Savoir-Faire"
               className="w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
             />
@@ -48,7 +48,7 @@ export function EmpowermentSection() {
             Discover the time-honored techniques our artisans use to preserve and restore the beauty of your leather
             goods, passed down through generations of craftsmen.
           </p>
-        </div>
+        </div>    
 
         {/* Thin divider */}
         <div className="h-px bg-divider mb-24" />

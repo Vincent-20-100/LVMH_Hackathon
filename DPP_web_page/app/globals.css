@@ -80,6 +80,13 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
+.luxury-brand {
+  font-family: var(--font-montserrat), 'Futura', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
 @theme inline {
   --font-sans: "Inter", "Inter Fallback";
   --font-serif: "Playfair Display", "Georgia", serif;
