@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import ProductCarousel from "./product-carousel"
 import {StickyHeader} from "./sticky-header"
 
+
 const complementaryProducts = [                                         // <-- COMPLEMENTARY PRODUCTS IMAGES PATHS --<
   { name: "Zippy Wallet", 
     category: "Small Leather Goods", 
