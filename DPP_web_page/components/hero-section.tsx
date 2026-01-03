@@ -44,7 +44,7 @@ export function HeroSection() {
         <div className="lg:w-3/5 flex items-center justify-center p-8 md:p-12 lg:p-20">
           <div className="relative w-full max-w-lg aspect-square">
             <img
-              src="/luxury-louis-vuitton-capucines-leather-handbag-bro.jpg"
+              src="luxury-louis-vuitton-capucines-leather-handbag-bro.jpg"
               alt="Capucines MM Leather Handbag"
               className="w-full h-full object-contain"
             />
