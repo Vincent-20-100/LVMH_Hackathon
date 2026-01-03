@@ -2,28 +2,30 @@
 
 import { useState } from 'react';
 
+const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
+
 export default function ProductCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = [
     {
-      src: "louis-vuitton-sac-again--M25877_PM2_Front view.avif",
+      src: getAssetPath("louis-vuitton-sac-again--M25877_PM2_Front view.avif"),
       alt: "Sac Again - Face"
     },
     {
-      src: "louis-vuitton-sac-again--M25877_PM1_Side view.avif",
+      src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Side view.avif"),
       alt: "Sac Again - Side"
     },
     {
-      src: "louis-vuitton-sac-again--M25877_PM1_Interior view.avif",
+      src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Interior view.avif"),
       alt: "Sac Again - Interior"
     },
     {
-      src: "louis-vuitton-sac-again--M25877_PM1_Detail view.avif",
+      src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Detail view.avif"),
       alt: "Sac Again - Detail"
     },
     {
-      src: "louis-vuitton-sac-again--M25877_PM1_Back view.avif",
+      src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Back view.avif"),
       alt: "Sac Again - Back"
     }
   ];
@@ -53,7 +55,7 @@ export default function ProductCarousel() {
       <button
         onClick={goToPrevious}
         className="absolute left-4 top-1/2 -translate-y-1/2 text-black text-3xl opacity-30 hover:opacity-70 transition-opacity duration-300"
-        aria-label="Image précédente"
+        aria-label="Previous"
       >
         ‹
       </button>
@@ -61,7 +63,7 @@ export default function ProductCarousel() {
       <button
         onClick={goToNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 text-black text-3xl opacity-30 hover:opacity-70 transition-opacity duration-300"
-        aria-label="Image suivante"
+        aria-label="Next"
       >
         ›
       </button>

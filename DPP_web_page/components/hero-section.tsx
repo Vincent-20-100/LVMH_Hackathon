@@ -5,24 +5,26 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import ProductCarousel from "./product-carousel"
 import {StickyHeader} from "./sticky-header"
 
+const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
+
 const complementaryProducts = [                                         // <-- COMPLEMENTARY PRODUCTS IMAGES PATHS --<
   { name: "Zippy Wallet", 
     category: "Small Leather Goods", 
-    image: "zippy--1.png",
+    image: getAssetPath("zippy--1.png"),
     url: "https://us.louisvuitton.com/eng-us/products/zippy-wallet-monogram-013178/M42616" },
   { name: "Sarah Wallet", 
     category: "Small Leather Goods", 
-    image: "sarah--1.png",
+    image: getAssetPath("sarah--1.png"),
     url: "https://us.louisvuitton.com/eng-us/products/sarah-wallet-monogram-007824/M62236" },
   { name: "Victorine Wallet", 
     category: "Small Leather Goods", 
-    image: "victorine--2.png",
+    image: getAssetPath("victorine--2.png"),
     url: "https://us.louisvuitton.com/eng-us/products/victorine-wallet-monogram-013217/M41938" },
   { name: "The LV Square Sunglasses", 
-    category: "Accessories", image: "lv-square-sunglasses--1.png",
+    category: "Accessories", image: getAssetPath("lv-square-sunglasses--1.png"),
     url: "https://us.louisvuitton.com/eng-us/products/the-lv-square-sunglasses-s00-nvprod7170011v/Z2996W"},
   { name: "Monogram Silhouette BB Bandeau", 
-    category: "Accessories", image: "louis-vuitton-bandeau-bb-monogram-silhouette--M97169_PM1_Detail view.avif",
+    category: "Accessories", image: getAssetPath("louis-vuitton-bandeau-bb-monogram-silhouette--M97169_PM1_Detail view.avif"),
     url: "https://us.louisvuitton.com/eng-us/products/mng-silhouette-bb-bandeau-s00-nvprod6520152v/M97169"}
 ]
 
@@ -59,7 +61,7 @@ export function HeroSection() {
           <div className="space-y-8">
             <div className="space-y-2">
               <p className="text-xs tracking-[0.25em] uppercase text-muted-foreground">Leather Goods</p>
-              <h1 className="luxury-brand text-l md:text-5xl lg:text-6xl tracking-tight text-balance">
+              <h1 className="text-l md:text-2xl tracking-[0.05em] text-balance">
                 <a 
                   href="https://fr.louisvuitton.com/fra-fr/produits/sac-again-monogram-nvprod6550038v/M25877" 
                   target="_blank" 
