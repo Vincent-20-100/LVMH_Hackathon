@@ -24,6 +24,13 @@ const complementaryProducts = [                                         // <-- C
   { name: "Monogram Silhouette BB Bandeau", 
     category: "Accessories", image: "louis-vuitton-bandeau-bb-monogram-silhouette--M97169_PM1_Detail view.avif",
     url: "https://us.louisvuitton.com/eng-us/products/mng-silhouette-bb-bandeau-s00-nvprod6520152v/M97169"}
+
+const complementaryProducts = [
+  { name: "Pochette Félicie", category: "Small Leather Goods", image: "luxury-leather-pochette-wallet-gold-hardware.jpg" },
+  { name: "Clochette Key Holder", category: "Accessories", image: "luxury-leather-key-holder-brown.jpg" },
+  { name: "Bandoulière Strap", category: "Straps", image: "luxury-leather-bag-strap-monogram.jpg" },
+  { name: "Card Holder", category: "Small Leather Goods", image: "luxury-leather-card-holder-minimalist.jpg" },
+  { name: "Cosmetic Pouch", category: "Accessories", image: "luxury-leather-cosmetic-pouch.jpg" },
 ]
 
 export function HeroSection() {
