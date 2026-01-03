@@ -4,11 +4,11 @@ import { useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const complementaryProducts = [
-  { name: "Pochette Félicie", category: "Small Leather Goods", image: "/luxury-leather-pochette-wallet-gold-hardware.jpg" },
-  { name: "Clochette Key Holder", category: "Accessories", image: "/luxury-leather-key-holder-brown.jpg" },
-  { name: "Bandoulière Strap", category: "Straps", image: "/luxury-leather-bag-strap-monogram.jpg" },
-  { name: "Card Holder", category: "Small Leather Goods", image: "/luxury-leather-card-holder-minimalist.jpg" },
-  { name: "Cosmetic Pouch", category: "Accessories", image: "/luxury-leather-cosmetic-pouch.jpg" },
+  { name: "Pochette Félicie", category: "Small Leather Goods", image: "luxury-leather-pochette-wallet-gold-hardware.jpg" },
+  { name: "Clochette Key Holder", category: "Accessories", image: "luxury-leather-key-holder-brown.jpg" },
+  { name: "Bandoulière Strap", category: "Straps", image: "luxury-leather-bag-strap-monogram.jpg" },
+  { name: "Card Holder", category: "Small Leather Goods", image: "luxury-leather-card-holder-minimalist.jpg" },
+  { name: "Cosmetic Pouch", category: "Accessories", image: "luxury-leather-cosmetic-pouch.jpg" },
 ]
 
 export function HeroSection() {
