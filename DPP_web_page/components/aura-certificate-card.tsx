@@ -80,8 +80,8 @@ export function AuraCertificateCard() {
 }
 
 const CometCard = ({
-  rotateDepth = 30,
-  translateDepth = 40,
+  rotateDepth = 40,
+  translateDepth = 50,
   className,
   children,
   onClick,
@@ -101,7 +101,6 @@ const CometCard = ({
     setIsMobile(window.innerWidth < 768);
   }, []);
 
-  // --- COMMANDE PAR LE SCROLL SUR MOBILE ---
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
@@ -110,18 +109,15 @@ const CometCard = ({
   useEffect(() => {
     if (isMobile) {
       return scrollYProgress.onChange((v) => {
-        // --- RÉGLAGES ---
-        const frequence = 1; // Met 2 pour deux allers-retours, 3 pour trois, etc.
-        const intensite = 0.3; // Augmente pour pencher plus fort
-        // Calcul de la vague
-        const wave = Math.sin(v * Math.PI * 2 * frequence); 
+        const frequence = 1.2; 
+        const intensite = 0.2; 
+        const wave = Math.cos(v * Math.PI * 2 * frequence); 
         y.set(wave * intensite); 
-        x.set(wave * (intensite * 0.4)); // Balancement latéral proportionnel
+        x.set(wave * (intensite * 0.4)); 
       });
     }
   }, [isMobile, scrollYProgress, x, y]);
 
-  // TES PARAMETRES D'ORIGINE (Inchangés)
   const springConfig = { stiffness: 150, damping: 20 };
   const mouseXSpring = useSpring(x, springConfig);
   const mouseYSpring = useSpring(y, springConfig);
@@ -155,7 +151,22 @@ const CometCard = ({
     y.set((e.clientY - rect.top) / rect.height - 0.5);
   };
 
-  const reset = () => { if (!isMobile) { x.set(0); y.set(0); } };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isMobile) return;
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    const touch = e.touches[0];
+    const tX = (touch.clientX - rect.left) / rect.width - 0.5;
+    const tY = (touch.clientY - rect.top) / rect.height - 0.5;
+    
+    // Limitation pour rester dans les bornes de tes calculs
+    if (tX >= -0.5 && tX <= 0.5 && tY >= -0.5 && tY <= 0.5) {
+      x.set(tX);
+      y.set(tY);
+    }
+  };
+
+  const reset = () => { x.set(0); y.set(0); };
 
   return (
     <div className={cn("perspective-distant transform-3d", className)} onClick={onClick}>
@@ -164,14 +175,16 @@ const CometCard = ({
         className="relative rounded-[16px] bg-transparent"
         onMouseMove={handleMouseMove}
         onMouseLeave={reset}
+        onTouchMove={handleTouchMove} // Active le mouvement au doigt
+        onTouchEnd={reset}           // Remet à zéro quand on lâche
         style={{ 
           rotateX, rotateY, translateX, translateY,
           transformStyle: "preserve-3d",
           boxShadow: shadowTransform
         }}
-        initial={{ scale: 1, z: 0 }}
+        initial={{scale: isMobile ? 0.6 : 1, z: 0}}
         whileHover={{ 
-          scale: isMobile ? 1.1 : 1.5, 
+          scale: isMobile ? 1.1 : 1.7, 
           z: 50,
           transition: { duration: 0.3 }
         }}
