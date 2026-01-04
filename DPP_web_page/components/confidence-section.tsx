@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 import { Shield, Check } from "lucide-react"
+import { AuraCertificateCard } from "./aura-certificate-card"
+
 
 const traceabilityData = [
   { label: "Origin", value: "France", detail: "Asnières-sur-Seine Atelier" },
@@ -13,60 +15,30 @@ const traceabilityData = [
 ]
 
 export function ConfidenceSection() {
-  const [isHovered, setIsHovered] = useState(false)
-
   return (
-    <section className="py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-background">
-      {/* Certificate Registration Banner */}
-      <div
-        className="relative border border-foreground p-8 md:p-12 lg:p-16 mb-24 cursor-pointer group overflow-hidden"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div
-          className={`absolute inset-0 bg-foreground transition-transform duration-700 ease-out ${
-            isHovered ? "translate-y-0" : "translate-y-full"
-          }`}
-        />
-
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Shield
-                className={`w-5 h-5 transition-colors duration-500 ${isHovered ? "text-background" : "text-gold"}`}
-              />
-              <span
-                className={`text-xs tracking-[0.25em] uppercase transition-colors duration-500 ${isHovered ? "text-background/70" : "text-muted-foreground"}`}
-              >
-                Exclusive Membership
-              </span>
-            </div>
-            <h2
-              className={`font-serif text-2xl md:text-3xl lg:text-4xl tracking-tight max-w-xl transition-colors duration-500 ${isHovered ? "text-background" : "text-foreground"}`}
-            >
-              Register your product to unlock your Certificate of Authenticity
-            </h2>
-            <p
-              className={`text-sm max-w-md transition-colors duration-500 ${isHovered ? "text-background/70" : "text-muted-foreground"}`}
-            >
-              Join the Louis Vuitton community and gain access to exclusive services, care recommendations, and a
-              digitally secured proof of ownership.
-            </p>
-          </div>
-
-          <button
-            className={`px-8 py-4 text-xs tracking-[0.2em] uppercase transition-all duration-500 border ${
-              isHovered
-                ? "bg-background text-foreground border-background hover:bg-gold hover:text-foreground hover:border-gold"
-                : "bg-gold text-foreground border-gold hover:bg-foreground hover:text-background hover:border-foreground"
-            }`}
-          >
-            Register Now
-          </button>
-        </div>
+    <section className="py-12 md:py-16 px-6 md:px-12 lg:px-20 bg-background">
+      
+      {/* 1. Aura 3D Card Display */}
+      <div className="mb-16">
+        <AuraCertificateCard />
       </div>
 
-      {/* Section Header */}
+      {/* 2. Register Your Product */}
+      <div className="mb-24 p-12 bg-[#f6f5f3] border-t border-b border-divider flex flex-col items-center text-center">
+        <h3 className="text-xl md:text-4xl font-serif mb-4 tracking-wide text-foreground">
+          Register your product to 
+          unlock your own Certificate of Authenticity
+        </h3>
+        <p className="max-w-2xl text-4sm text-muted-foreground leading-relaxed tracking-wide">
+          Join the Louis Vuitton community and gain access to exclusive services, 
+          care recommendations, and a digitally secured proof of ownership.
+        </p>
+        <button className="mt-8 px-10 py-3 border border-black text-[10px] tracking-[0.4em] uppercase hover:bg-black hover:text-white transition-all duration-500">
+          Register Now
+        </button>
+      </div>
+
+      {/* Section Header - Traceability */}
       <div className="flex items-center gap-4 mb-12">
         <div className="h-px flex-1 bg-divider" />
         <h3 className="text-xs tracking-[0.3em] uppercase text-muted-foreground">Traceability & Provenance</h3>

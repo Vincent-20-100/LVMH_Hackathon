@@ -102,7 +102,7 @@ export function HeroSection() {
       <div className="h-px bg-divider mx-6 md:mx-12 lg:mx-20" />
 
       {/* Complementary Products Scroll */}
-      <div className="px-6 py-12 md:px-12 lg:px-20">
+      <div className="px-6 py-4 md:px-12 lg:px-20">
         <div className="flex items-center justify-between mb-8">
           <h3 className="text-xs tracking-[0.25em] uppercase text-muted-foreground">Complementary Pieces</h3>
           <div className="flex gap-2">
