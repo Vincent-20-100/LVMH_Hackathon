@@ -16,7 +16,7 @@ export function AuraCertificateCard() {
 
             {/* Pattern LV en background (image) */}
             <div
-              className="absolute inset-0 opacity-35"
+              className="absolute inset-0 opacity-40"
               style={{
                 backgroundImage: `url('${getAssetPath("card_background-2.png")}')`,
                 backgroundSize: '120%',
