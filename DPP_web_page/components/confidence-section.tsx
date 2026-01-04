@@ -26,16 +26,20 @@ export function ConfidenceSection() {
       {/* 2. Register Your Product */}
       <div className="mb-16 md:mb-20 lg:mb-24 p-8 md:p-10 lg:p-12 bg-[#f6f5f3] border-t border-b border-divider flex flex-col items-center text-center">
         <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif mb-3 md:mb-4 tracking-wide text-foreground max-w-4xl">
-          Register your product to
-          unlock your own Certificate of Authenticity
+          Connect your account to <br />
+          Unlock your Certificate of Authenticity
         </h3>
         <p className="max-w-xl md:max-w-2xl lg:max-w-3xl text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed tracking-wide">
-          Join the Louis Vuitton community and gain access to exclusive services,
-          care recommendations, and a digitally secured proof of ownership.
+          Join the Louis Vuitton community,          
+          gain access to exclusive services and    
+          blockchain secured proof of ownership.
         </p>
-        <button className="mt-6 md:mt-8 px-8 md:px-10 py-2.5 md:py-3 border border-black text-[9px] md:text-[10px] tracking-[0.4em] uppercase hover:bg-black hover:text-white transition-all duration-500">
-          Register Now
-        </button>
+        <a 
+          href="https://account.louisvuitton.com/eng-us/mylv/registration" 
+          className="inline-block mt-6 md:mt-8 px-8 md:px-10 py-2.5 md:py-3 border border-black text-[9px] md:text-[10px] tracking-[0.4em] uppercase hover:bg-black hover:text-white transition-all duration-500 text-center"
+        >
+          Connect or Create 
+        </a>
       </div>
 
       {/* Section Header - Traceability */}

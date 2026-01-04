@@ -21,7 +21,7 @@ export function EmpowermentSection() {
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-24">
           <span className="text-[10px] md:text-xs tracking-[0.3em] uppercase text-muted-foreground">The Art of Care</span>
-          <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl xl:text-5xl mt-3 md:mt-4 tracking-tight">Aftercare & Longevity</h2>
+          <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl xl:text-5xl mt-3 md:mt-4 tracking-tight">Aftercare  and  Longevity</h2>
           <div className="h-px w-12 md:w-16 bg-gold mx-auto mt-6 md:mt-8" />
         </div>
 
