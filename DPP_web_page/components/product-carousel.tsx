@@ -1,93 +1,96 @@
-"use client"
+"use client";
 
-import { useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
 export default function ProductCarousel() {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = [
-    {
-      src: getAssetPath("louis-vuitton-sac-again--M25877_PM2_Front view.avif"),
-      alt: "Sac Again - Face"
-    },
-    {
-      src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Side view.avif"),
-      alt: "Sac Again - Side"
-    },
-    {
-      src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Interior view.avif"),
-      alt: "Sac Again - Interior"
-    },
-    {
-      src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Detail view.avif"),
-      alt: "Sac Again - Detail"
-    },
-    {
-      src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Back view.avif"),
-      alt: "Sac Again - Back"
-    }
+    { src: getAssetPath("louis-vuitton-sac-again--M25877_PM2_Front view.avif"), alt: "Sac Again - Face" },
+    { src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Side view.avif"), alt: "Sac Again - Side" },
+    { src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Interior view.avif"), alt: "Sac Again - Interior" },
+    { src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Detail view.avif"), alt: "Sac Again - Detail" },
+    { src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Back view.avif"), alt: "Sac Again - Back" }
   ];
 
+  // Met à jour l'index des points quand on scroll au doigt
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const width = scrollRef.current.offsetWidth;
+    const newIndex = Math.round(scrollRef.current.scrollLeft / width);
+    if (newIndex !== currentIndex) setCurrentIndex(newIndex);
+  };
+
+  const scrollTo = (index: number) => {
+    if (!scrollRef.current) return;
+    const width = scrollRef.current.offsetWidth;
+    scrollRef.current.scrollTo({
+      left: index * width,
+      behavior: "smooth"
+    });
+  };
+
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
+    const nextIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    scrollTo(nextIndex);
   };
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
+    const nextIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+    scrollTo(nextIndex);
   };
 
   return (
-    <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl aspect-square group mx-auto">
-      {/* Main Image - Sans lien */}
-      <img
-        src={images[currentIndex].src}
-        alt={images[currentIndex].alt}
-        className="w-full h-full object-contain transition-opacity duration-500"
-      />
+    <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl aspect-square mx-auto group">
+      
+      {/* Container de Scroll Horizontal (Gère le tactile et le glissé) */}
+      <div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        className="flex w-full h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {images.map((img, index) => (
+          <div key={index} className="w-full h-full flex-shrink-0 snap-center flex items-center justify-center">
+            <img
+              src={img.src}
+              alt={img.alt}
+              className="w-full h-full object-contain select-none pointer-events-none"
+            />
+          </div>
+        ))}
+      </div>
 
-        {/* Navigation Arrows - With comfortable click zone */}
-       <button
-       onClick={goToPrevious}
-       className="absolute left-0 md:left-2 lg:left-4 top-1/2 -translate-y-1/2 
-                    w-30 h-30 flex items-center justify-center
-                    text-black/50 text-2xl md:text-3xl lg:text-4xl 
-                    opacity-30 hover:opacity-70 transition-opacity duration-300
-                    after:content-[''] after:absolute after:inset-0 after:z-10"
-       aria-label="Previous"
-       >
-       ‹
-       </button>
+      {/* Navigation Arrows - Cachées sur petit mobile pour laisser la place au geste */}
+      <button
+        onClick={goToPrevious}
+        className="absolute left-0 md:left-2 top-1/2 -translate-y-1/2 w-12 h-24 hidden sm:flex items-center justify-center text-black/20 hover:text-black/70 text-4xl transition-all z-10"
+        aria-label="Previous"
+      >
+        ‹
+      </button>
 
-       <button
-       onClick={goToNext}
-       className="absolute right-0 md:right-2 lg:right-4 top-1/2 -translate-y-1/2 
-                    w-30 h-30 flex items-center justify-center
-                    text-black/50 text-2xl md:text-3xl lg:text-4xl 
-                    opacity-30 hover:opacity-70 transition-opacity duration-300
-                    after:content-[''] after:absolute after:inset-0 after:z-10"
-       aria-label="Next"
-       >
-       ›
-       </button>
+      <button
+        onClick={goToNext}
+        className="absolute right-0 md:right-2 top-1/2 -translate-y-1/2 w-12 h-24 hidden sm:flex items-center justify-center text-black/20 hover:text-black/70 text-4xl transition-all z-10"
+        aria-label="Next"
+      >
+        ›
+      </button>
 
-      {/* Subtle dots - Bottom center */}
-      <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+      {/* Subtle dots */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {images.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`h-1.5 md:h-2 rounded-full transition-all duration-300 ${
-              currentIndex === index
-                ? 'bg-black/10 w-6 md:w-8 lg:w-10'
-                : 'bg-black/10 hover:bg-black/60 w-1.5 md:w-2'
+            onClick={() => scrollTo(index)}
+            className={`h-1 rounded-full transition-all duration-300 ${
+              currentIndex === index ? 'bg-black/40 w-8' : 'bg-black/10 w-2'
             }`}
-            aria-label={`Image ${index + 1}`}
+            aria-label={`Go to image ${index + 1}`}
           />
         ))}
       </div>

@@ -23,11 +23,27 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 })
 
+const BASE_URL = "https://vincent-20-100.github.io/LVMH_Hackathon";
+
 export const metadata: Metadata = {
-  title: "Digital Product Passport | Louis Vuitton",
-  description: "Authentic Louis Vuitton leather goods - Certificate of Authenticity and Product Traceability",
-  generator: "v0.app",
-  icons:{icon: getAssetPath("favicon-32x32.png")}
+  title: "Louis Vuitton | Digital Product Passport",
+  description: "'Verify your authentic piece via blockchain and be aware of product traceability",
+  metadataBase: new URL(BASE_URL),
+  icons:{icon: getAssetPath("favicon-32x32.png")},
+  openGraph: {
+      title: "Louis Vuitton | Digital Product Passport",
+      description: "Verify your authentic piece via blockchain and be aware of product traceability",
+      url: "https://vincent-20-100.github.io/LVMH_Hackathon/",
+      siteName: "Louis Vuitton",
+      type: "website",
+      images: [
+        { url: `${BASE_URL}/DPP-mignature.png`,
+          width: 1228,
+          height: 691,
+          alt: "Louis Vuitton DPP Preview",
+        }, 
+      ], 
+  }
 }
 
 export const viewport: Viewport = {

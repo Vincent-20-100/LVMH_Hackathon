@@ -31,24 +31,29 @@ export function StickyHeader() {
     >
       <div className="flex items-center justify-between relative min-h-[40px]">
         
-        {/* TEXTE GAUCHE : Caché sur mobile, affiché à partir de MD (medium) */}
+        {/* TEXTE GAUCHE */}
         <span className="hidden md:block text-xs tracking-[0.3em] uppercase text-muted-foreground">
           Digital Product Passport
         </span>
 
-        {/* BLOC CENTRAL : S'empile sur mobile, se centre absolument partout */}
-        <div className="flex flex-col items-center absolute left-1/2 -translate-x-1/2 text-center w-full max-w-[max-content]">
+        {/* BLOC CENTRAL : Devenu un lien vers la homepage LV */}
+        <a 
+          href="https://eu.louisvuitton.com/eng-e1/homepage" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex flex-col items-center absolute left-1/2 -translate-x-1/2 text-center w-full max-w-[max-content] hover:opacity-60 transition-opacity cursor-pointer"
+        >
           <div className="text-xl md:text-2xl tracking-[0.1em] luxury-brand font-bold whitespace-nowrap">
             LOUIS VUITTON
           </div>
           
-          {/* Sous-titre : Apparaît UNIQUEMENT sur mobile (sous LV) */}
+          {/* Sous-titre : Uniquement mobile */}
           <span className="block md:hidden text-[10px] tracking-[0.2em] uppercase text-muted-foreground mt-1">
             Digital Product Passport
           </span>
-        </div>
+        </a>
 
-        {/* TEXTE DROITE (PARIS) : Caché sur mobile, affiché à partir de MD */}
+        {/* TEXTE DROITE (PARIS) */}
         <span className="hidden md:block text-xs tracking-[0.2em] uppercase text-muted-foreground">
           Paris
         </span>
