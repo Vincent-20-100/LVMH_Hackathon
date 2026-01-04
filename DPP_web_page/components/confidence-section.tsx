@@ -24,16 +24,16 @@ export function ConfidenceSection() {
       </div>
 
       {/* 2. Register Your Product */}
-      <div className="mb-24 p-12 bg-[#f6f5f3] border-t border-b border-divider flex flex-col items-center text-center">
-        <h3 className="text-xl md:text-4xl font-serif mb-4 tracking-wide text-foreground">
-          Register your product to 
+      <div className="mb-16 md:mb-20 lg:mb-24 p-8 md:p-10 lg:p-12 bg-[#f6f5f3] border-t border-b border-divider flex flex-col items-center text-center">
+        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif mb-3 md:mb-4 tracking-wide text-foreground max-w-4xl">
+          Register your product to
           unlock your own Certificate of Authenticity
         </h3>
-        <p className="max-w-2xl text-4sm text-muted-foreground leading-relaxed tracking-wide">
-          Join the Louis Vuitton community and gain access to exclusive services, 
+        <p className="max-w-xl md:max-w-2xl lg:max-w-3xl text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed tracking-wide">
+          Join the Louis Vuitton community and gain access to exclusive services,
           care recommendations, and a digitally secured proof of ownership.
         </p>
-        <button className="mt-8 px-10 py-3 border border-black text-[10px] tracking-[0.4em] uppercase hover:bg-black hover:text-white transition-all duration-500">
+        <button className="mt-6 md:mt-8 px-8 md:px-10 py-2.5 md:py-3 border border-black text-[9px] md:text-[10px] tracking-[0.4em] uppercase hover:bg-black hover:text-white transition-all duration-500">
           Register Now
         </button>
       </div>
@@ -46,28 +46,28 @@ export function ConfidenceSection() {
       </div>
 
       {/* Traceability Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-divider">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-divider">
         {traceabilityData.map((item, index) => (
-          <div key={index} className="bg-background p-8 group hover:bg-secondary transition-colors duration-300">
-            <div className="flex items-start justify-between mb-4">
-              <span className="text-xs tracking-[0.2em] uppercase text-muted-foreground">{item.label}</span>
-              <Check className="w-3 h-3 text-gold opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div key={index} className="bg-background p-6 md:p-8 lg:p-10 group hover:bg-secondary transition-colors duration-300">
+            <div className="flex items-start justify-between mb-3 md:mb-4">
+              <span className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-muted-foreground">{item.label}</span>
+              <Check className="w-3 h-3 md:w-4 md:h-4 text-gold opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-            <p className="font-serif text-xl md:text-2xl mb-2">{item.value}</p>
-            <p className="text-xs text-muted-foreground">{item.detail}</p>
+            <p className="font-serif text-lg md:text-xl lg:text-2xl mb-2">{item.value}</p>
+            <p className="text-[11px] md:text-xs text-muted-foreground">{item.detail}</p>
           </div>
         ))}
       </div>
 
       {/* Verification Badge */}
-      <div className="mt-16 flex items-center justify-center gap-4">
-        <div className="flex items-center gap-2 px-4 py-2 border border-divider">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Blockchain Verified</span>
+      <div className="mt-12 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
+        <div className="flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 border border-divider">
+          <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-green-500 animate-pulse" />
+          <span className="text-[10px] md:text-xs tracking-[0.15em] uppercase text-muted-foreground whitespace-nowrap">Blockchain Verified</span>
         </div>
-        <div className="flex items-center gap-2 px-4 py-2 border border-divider">
-          <Shield className="w-3 h-3 text-gold" />
-          <span className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Authentic Product</span>
+        <div className="flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 border border-divider">
+          <Shield className="w-3 h-3 md:w-4 md:h-4 text-gold" />
+          <span className="text-[10px] md:text-xs tracking-[0.15em] uppercase text-muted-foreground whitespace-nowrap">Authentic Product</span>
         </div>
       </div>
     </section>
