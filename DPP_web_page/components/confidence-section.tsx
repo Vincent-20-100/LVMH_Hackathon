@@ -1,9 +1,7 @@
 "use client"
-
-import { useState } from "react"
+import Link from 'next/link'
 import { Shield, Check } from "lucide-react"
 import { AuraCertificateCard } from "./aura-certificate-card"
-
 
 const traceabilityData = [
   { label: "Origin", value: "France", detail: "Asnières-sur-Seine Atelier" },
@@ -24,7 +22,7 @@ export function ConfidenceSection() {
       </div>
 
       {/* 2. Register Your Product */}
-      <div className="mb-16 md:mb-20 lg:mb-24 p-8 md:p-10 lg:p-12 bg-[#f6f5f3] border-t border-b border-divider flex flex-col items-center text-center">
+      <div className="mb-16 md:mb-20 lg:mb-24 p-8 md:p-10 lg:p-12 bg-white border-t border-b border-divider flex flex-col items-center text-center">
         <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif mb-3 md:mb-4 tracking-wide text-foreground max-w-4xl">
           Connect your account to <br />
           Unlock your Certificate of Authenticity
@@ -34,12 +32,12 @@ export function ConfidenceSection() {
           gain access to exclusive services and    
           blockchain secured proof of ownership.
         </p>
-        <a 
-          href="https://account.louisvuitton.com/eng-us/mylv/registration" 
+        <Link 
+          href="/account-creation"
           className="inline-block mt-6 md:mt-8 px-8 md:px-10 py-2.5 md:py-3 border border-black text-[9px] md:text-[10px] tracking-[0.4em] uppercase hover:bg-black hover:text-white transition-all duration-500 text-center"
         >
           Connect or Create 
-        </a>
+        </Link>
       </div>
 
       {/* Section Header - Traceability */}
