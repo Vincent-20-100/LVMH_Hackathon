@@ -43,7 +43,7 @@ export function StickyHeader() {
           rel="noopener noreferrer"
           className="flex flex-col items-center absolute left-1/2 -translate-x-1/2 text-center w-full max-w-[max-content] hover:opacity-60 transition-opacity cursor-pointer"
         >
-          <div className="text-xl md:text-2xl tracking-[0.1em] luxury-brand font-bold whitespace-nowrap">
+          <div className="tracking-[0.1em] luxury-brand whitespace-nowrap">
             LOUIS VUITTON
           </div>
           
