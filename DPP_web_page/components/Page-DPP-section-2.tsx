@@ -12,7 +12,7 @@ const traceabilityData = [
   { label: "Serial", value: "LV•2024•09•48864", detail: "Blockchain verified" },
 ]
 
-export function ConfidenceSection() {
+export function PageDPPSection2() {
   return (
     <section className="py-12 md:py-16 px-6 md:px-12 lg:px-20 bg-background">
       

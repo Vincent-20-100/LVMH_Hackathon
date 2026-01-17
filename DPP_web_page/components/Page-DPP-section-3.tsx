@@ -12,7 +12,7 @@ const serviceLedger = [
   { date: "—", service: "Stitching Inspection", status: "Available", location: "Certified Artisan" },
 ]
 
-export function EmpowermentSection() {
+export function PageDPPSection3() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
 
   return (

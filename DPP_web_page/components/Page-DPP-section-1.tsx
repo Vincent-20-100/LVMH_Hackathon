@@ -28,7 +28,7 @@ const complementaryProducts = [        // <-- COMPLEMENTARY PRODUCTS IMAGES PATH
     url: "https://us.louisvuitton.com/eng-us/products/mng-silhouette-bb-bandeau-s00-nvprod6520152v/M97169"}
 ]
 
-export function HeroSection() {
+export function PageDPPSection1() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [scrollAmount, setScrollAmount] = useState(200)
 

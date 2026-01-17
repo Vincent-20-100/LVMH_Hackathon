@@ -79,27 +79,13 @@ export function AuraCertificateCard() {
                 </div>
 
                 <div className="flex flex-col items-center justify-center mt-6 pt-0.5 space-y-4 w-full overflow-hidden">
-                  <span className="text-[10px] sm:text-[13px] leading-tight whitespace-nowrap text-[#3d3d3d] uppercase font-bold tracking-[0.2em] sm:tracking-[0.3em] luxury-brand">
-                   Certified unique product N°
+                  <span className="text-[10px] sm:text-[12px] leading-tight whitespace-nowrap text-[#3d3d3d] uppercase font-bold tracking-[0.2em] sm:tracking-[0.3em] luxury-brand">
+                   Digital Product Passeport N°
                   </span>
-                  <span className="text-[16px] sm:text-[30px] text-[#3d3d3d] uppercase font-bold tracking-[0.15em] sm:tracking-[0.3em] luxury-brand font-mono blur-[2px] sm:blur-[4px] select-none whitespace-nowrap">
-                    #F7-RA598-LV
+                  <span className="text-[16px] sm:text-[18px] text-[#3d3d3d] uppercase font-bold tracking-[0.15em] sm:tracking-[0.3em] luxury-brand font-mono  select-none whitespace-nowrap blur-[2px] sm:blur-[4px]"> {/*  blur-[2px] sm:blur-[4px] */}
+                    M25877-RA598-BX498
                   </span>
                 </div>
-
-                {/* <div className="flex items-center w-full my-4 px-4">
-                  <div className="relative flex items-center justify-center">
-                    <div className="absolute w-32 h-32 bg-[#09dcba]/15 rounded-full blur-[40px] z-0 pointer-events-none" />
-                    <img
-                      src={getAssetPath("card-aura-logo-2.png")}
-                      alt="Aura Logo"
-                      className="w-[20px] h-auto object-contain z-10 opacity-80"
-                    />
-                  </div>
-                  <div className="text-left text-[#2d2d2d] tracking-[0.18em] leading-[1.3]" style={{ fontFamily: 'serif' }}>
-                    <h2 className="text-[14px] font-light">AURA BLOCKCHAIN</h2>
-                  </div>
-                </div> */}
 
               </div>
             </div>

@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
-import { Montserrat } from "next/font/google"
+import { Montserrat, JetBrains_Mono, Space_Mono} from "next/font/google"
 
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
@@ -21,6 +21,17 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["600", "700"],
   variable: "--font-montserrat",
+})
+
+const jetbrains = JetBrains_Mono({ 
+  subsets: ['latin'],
+  variable: '--font-jetbrains' 
+})
+
+const spacemono = Space_Mono({ 
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-space' 
 })
 
 const BASE_URL = "https://vincent-20-100.github.io/LVMH_Hackathon";

@@ -116,7 +116,7 @@ const complianceData: AccordionItem[] = [
   },
 ]
 
-export function SerenityFooter() {
+export function PageDPPSection4() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null)
 
   const toggleAccordion = (id: string) => {
