@@ -2,8 +2,8 @@
 
 import { useRef, useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import ProductCarousel from "./Feature-product-carousel"
-import {StickyHeader} from "./Feature-sticky-header"
+import ProductCarousel from "./feature-product-carousel"
+import {StickyHeader} from "./feature-sticky-header"
 
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 

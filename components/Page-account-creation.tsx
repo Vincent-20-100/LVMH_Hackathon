@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Eye, EyeOff } from "lucide-react"
-import { StickyHeader } from "./Feature-sticky-header"
+import { StickyHeader } from "./feature-sticky-header"
 import { useRouter } from "next/navigation"
 
 

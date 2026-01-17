@@ -1,5 +1,5 @@
-import AccountCreation from "@/components/Page-account-creation"
+import AccountCreation from "@/components/page-account-creation"
 
 export default function AccountCreationPage() {
   return <AccountCreation />
-}
+}<
