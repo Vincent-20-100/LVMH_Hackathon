@@ -20,46 +20,52 @@ export function ConnectionBanner() {
 
   return (
     <AnimatePresence>
-      <motion.div
-        className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.4, delay: 0.3 }}
-      >
-        {/* Bandeau avec dégradé transparent → opaque → transparent */}
-        <div
-          className="w-full py-8 md:py-10 pointer-events-auto"
-          style={{
-            background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.97) 20%, rgba(255,255,255,0.97) 80%, transparent 100%)",
-          }}
+      {!isDismissed && (
+        <motion.div
+          className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <div className="relative max-w-lg mx-auto px-8 text-center">
-            {/* Bouton fermer */}
-            <button
-              onClick={() => setIsDismissed(true)}
-              className="absolute -top-2 right-4 md:right-0 p-1.5 text-neutral-400 hover:text-neutral-600 transition-colors"
-              aria-label="Fermer"
-            >
-              <X className="w-5 h-5" />
-            </button>
+          {/* Bandeau Glass - Pleine largeur avec dégradé transparent sur les bords */}
+          <div
+            className="w-full pointer-events-auto"
+            style={{
+              background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 10%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.1) 90%, transparent 100%)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+            }}
+          >
+            <div className="relative max-w-2xl mx-auto px-8 py-10 md:py-14 text-center">
 
-            {/* Contenu */}
-            <h3 className="text-base md:text-lg font-serif mb-2 tracking-wide text-foreground">
-              Débloquez votre Certificat
-            </h3>
-            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed mb-4">
-              Connectez-vous pour accéder à votre preuve de propriété.
-            </p>
-            <button
-              onClick={handleConnect}
-              className="px-6 py-2 bg-black text-white text-[10px] md:text-xs tracking-[0.3em] uppercase hover:bg-neutral-800 transition-colors duration-300"
-            >
-              Se connecter
-            </button>
+              {/* Bouton Fermer */}
+              <button
+                onClick={() => setIsDismissed(true)}
+                className="absolute top-4 right-4 p-1.5 text-neutral-500 hover:text-neutral-800 transition-colors"
+                aria-label="Fermer"
+              >
+                <X className="w-6 h-6 stroke-[1.5px]" />
+              </button>
+
+              {/* Contenu */}
+              <h3 className="text-2xl md:text-4xl font-light tracking-[0.1em] text-neutral-800 uppercase mb-4">
+                Débloquez votre Certificat
+              </h3>
+              <p className="text-sm md:text-base text-neutral-600 font-light tracking-wide mb-8">
+                Votre collection, votre histoire.
+              </p>
+
+              <button
+                onClick={handleConnect}
+                className="px-10 py-3 bg-black text-white text-[11px] md:text-xs tracking-[0.4em] uppercase hover:bg-neutral-800 transition-all duration-300"
+              >
+                Se connecter
+              </button>
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 }
