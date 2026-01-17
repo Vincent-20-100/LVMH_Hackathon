@@ -2,12 +2,12 @@
 
 import { useRef, useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import ProductCarousel from "./product-carousel"
-import {StickyHeader} from "./sticky-header"
+import ProductCarousel from "./Feature-product-carousel"
+import {StickyHeader} from "./Feature-sticky-header"
 
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
-const complementaryProducts = [                                         // <-- COMPLEMENTARY PRODUCTS IMAGES PATHS --<
+const complementaryProducts = [        // <-- COMPLEMENTARY PRODUCTS IMAGES PATHS --<
   { name: "Zippy Wallet",
     category: "Small Leather Goods",
     image: getAssetPath("zippy--1.png"),
@@ -68,7 +68,7 @@ export function HeroSection() {
       <div className="h-px bg-divider mx-6 md:mx-12 lg:mx-20" />
 
       {/* Main Hero Content */}
-      <div className="flex-1 flex flex-col lg:flex-row">  {/* ← CETTE LIGNE ÉTAIT MANQUANTE */}
+      <div className="flex-1 flex flex-col lg:flex-row">
         {/* Product Image - Left Side */}
         <div className="lg:w-3/5 flex items-center justify-center p-8 md:p-12 lg:p-20">
           <ProductCarousel />
