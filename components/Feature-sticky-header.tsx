@@ -1,11 +1,16 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ReactNode } from 'react'
 import { useUser } from '@/contexts/user-context'
 import Link from 'next/link'
 import { User, LogIn } from 'lucide-react'
 
-export function StickyHeader() {
+interface StickyHeaderProps {
+  leftContent?: ReactNode;
+  rightContent?: ReactNode;
+}
+
+export function StickyHeader({ leftContent, rightContent }: StickyHeaderProps = {}) {
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const { user, isConnected } = useUser();
@@ -36,9 +41,13 @@ export function StickyHeader() {
       <div className="flex items-center justify-between relative min-h-[40px]">
         
         {/* TEXTE GAUCHE */}
-        <span className="hidden md:block text-xs tracking-[0.3em] uppercase text-muted-foreground">
-          Digital Product Passport
-        </span>
+        {leftContent !== undefined ? (
+          leftContent
+        ) : (
+          <span className="hidden md:block text-xs tracking-[0.3em] uppercase text-muted-foreground">
+            Digital Product Passport
+          </span>
+        )}
 
         {/* BLOC CENTRAL : Devenu un lien vers la homepage LV */}
         <a 
@@ -59,16 +68,22 @@ export function StickyHeader() {
 
         {/* TEXTE DROITE (PERSONNALISÉ) */}
         <div className="hidden md:block">
-          {isConnected && user ? (
-            <Link href="/collection" className="flex items-center gap-2 text-xs tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors">
-              <User className="w-4 h-4" />
-              <span>Welcome, {user.firstName}</span>
-            </Link>
+          {rightContent !== undefined ? (
+            rightContent
           ) : (
-            <Link href="/account-creation" className="flex items-center gap-2 text-xs tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors">
-              <LogIn className="w-4 h-4" />
-              <span>Login</span>
-            </Link>
+            <>
+              {isConnected && user ? (
+                <Link href="/collection" className="flex items-center gap-2 text-xs tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors">
+                  <User className="w-4 h-4" />
+                  <span>Welcome, {user.firstName}</span>
+                </Link>
+              ) : (
+                <Link href="/account-creation" className="flex items-center gap-2 text-xs tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors">
+                  <LogIn className="w-4 h-4" />
+                  <span>Login</span>
+                </Link>
+              )}
+            </>
           )}
         </div>
 

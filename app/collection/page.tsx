@@ -4,10 +4,14 @@ import { useUser } from "@/contexts/user-context";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FeatureCollectionGrid } from "@/components/feature-collection-grid";
+import { StickyHeader } from "@/components/feature-sticky-header";
+import Link from "next/link";
+import { ArrowLeft, LogOut } from "lucide-react";
 
 export default function CollectionPage() {
-  const { user, isConnected, isLoading } = useUser();
+  const { user, isConnected, isLoading, logout } = useUser();
   const router = useRouter();
+  const fullName = user ? `${user.firstName} ${user.lastName}` : "";
 
   // Rediriger vers l'accueil si non connecté (après chargement)
   useEffect(() => {
@@ -27,18 +31,45 @@ export default function CollectionPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="border-b border-gray-200 px-6 py-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-light tracking-wide">Ma Collection</h1>
-          <p className="text-sm text-gray-600">
-            Bienvenue, {user?.firstName}
-          </p>
+      {/* Header Sticky */}
+      <StickyHeader
+        leftContent={
+          <Link
+            href="/"
+            className="hidden md:flex items-center gap-2 text-xs tracking-[0.3em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Retour au produit</span>
+          </Link>
+        }
+        rightContent={
+          <button
+            onClick={logout}
+            className="flex items-center gap-2 text-xs tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <LogOut className="w-4 h-4" />
+            <span>Déconnexion</span>
+          </button>
+        }
+      />
+
+      {/* Section Titre & Accroche */}
+      {fullName && (
+        <div className="text-center pt-32 pb-8">
+          {/* L'accueil personnalisé */}
+          <h2 className="text-2xl py-4 md:text-2xl lg:text-4xl font-light italic tracking-tight text-gray-900 mb-4">
+            Bienvenue chez vous, {fullName}.
+          </h2>
+          
+          {/* L'accroche émotionnelle */}
+          <h3 className="text-l md:text-xl lg:text-2xl italic ">
+            Chaque pièce est une histoire, voici la vôtre.
+          </h3>
         </div>
-      </header>
+      )}
 
       {/* Contenu principal - Grille de produits */}
-      <section className="max-w-full mx-auto px-6 py-12">
+      <section className="max-w-full mx-auto px-6 pb-12">
         <FeatureCollectionGrid />
       </section>
     </main>
