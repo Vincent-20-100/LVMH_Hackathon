@@ -9,43 +9,87 @@ import {
   useScroll,
 } from "motion/react";
 import { useUser } from "@/contexts/user-context";
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 // --- UTILITAIRES ---
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
-const LV_URL = "https://account.louisvuitton.com/eng-us/mylv/registration/";
 const product_image = getAssetPath("SML-louis-vuitton-sac-again--M25877_PM1_Side_view.png");
 
-export function AuraCertificateCard() {
-  const [isHovered, setIsHovered] = useState(false); // État pour le flou
-  const { user } = useUser();
+interface AuraCertificateCardProps {
+  variant?: "dpp" | "collection";
+}
 
-  const product = user?.products.find(p => p.id === 'M25877');
-  const isOwner = product?.isOwner ?? false;
-  
+export function AuraCertificateCard({ variant = "dpp" }: AuraCertificateCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  const { isConnected } = useUser();
+  const router = useRouter();
+
+  // Le numéro est flouté si l'utilisateur n'est pas connecté
+  const isBlurred = !isConnected;
+
   const handleRedirect = () => {
-    window.open(LV_URL, '_blank', 'noopener,noreferrer');
+    if (variant === "collection") {
+      // Depuis la collection → aller vers la page produit
+      router.push("/");
+    } else {
+      // Depuis la page DPP
+      if (isConnected) {
+        // Connecté → aller vers la collection
+        router.push("/collection");
+      } else {
+        // Non connecté → aller vers la page de connexion
+        router.push("/account-creation");
+      }
+    }
   };
 
   const [isMobile, setIsMobile] = useState(false);
 
+  // Afficher le popup seulement sur la page DPP et si non connecté
+  const showPopup = variant === "dpp" && !isConnected;
+
   return (
     <div className="bg-white flex flex-col items-center p-2 relative">
-      
+
+      {/* POPUP DE CONNEXION - Au-dessus de la carte */}
+      {showPopup && (
+        <motion.div
+          className="mb-6 p-6 md:p-8 bg-white border border-neutral-200 rounded-lg shadow-lg max-w-md text-center z-30"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <h3 className="text-lg md:text-xl font-serif mb-3 tracking-wide text-foreground">
+            Débloquez votre Certificat d'Authenticité
+          </h3>
+          <p className="text-xs md:text-sm text-muted-foreground leading-relaxed mb-5">
+            Connectez-vous pour accéder à votre preuve de propriété sécurisée par blockchain.
+          </p>
+          <button
+            onClick={handleRedirect}
+            className="px-6 md:px-8 py-2.5 bg-black text-white text-[10px] md:text-xs tracking-[0.3em] uppercase hover:bg-neutral-800 transition-colors duration-300"
+          >
+            Se connecter
+          </button>
+        </motion.div>
+      )}
+
       {/* 1. LE FLOU DE FOND : S'anime sur toute la page quand isHovered est vrai */}
-        { !isMobile && (
-        <motion.div 
+      {!isMobile && (
+        <motion.div
           className="fixed inset-0 z-10 pointer-events-none backdrop-blur-[4px] bg-black/25"
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.4 }}
-      />
+        />
       )}
+
       {/* 2. LE CONTENEUR DE LA CARTE : Gère le changement d'état au survol */}
-      <div 
-        className="relative z-20" 
-        onMouseEnter={() => setIsHovered(true)} 
+      <div
+        className="relative z-20"
+        onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <CometCard className="w-[280px] h-[400px] sm:w-[330px] sm:h-[470px] cursor-pointer" onClick={handleRedirect}>
@@ -95,7 +139,7 @@ export function AuraCertificateCard() {
                   </span>
                   <span className={cn(
                     "text-[16px] sm:text-[18px] text-[#3d3d3d] uppercase font-bold tracking-[0.15em] sm:tracking-[0.3em] luxury-brand font-mono select-none whitespace-nowrap",
-                    !isOwner && "blur-[2px] sm:blur-[4px]"
+                    isBlurred && "blur-[2px] sm:blur-[4px]"
                   )}>
                     M25877-RA598-BX498
                   </span>

@@ -1,5 +1,4 @@
 "use client"
-import Link from 'next/link'
 import { Shield, Check } from "lucide-react"
 import { AuraCertificateCard } from "./feature-certificate-card-v2"
 
@@ -16,28 +15,9 @@ export function PageDPPSection2() {
   return (
     <section className="py-12 md:py-16 px-6 md:px-12 lg:px-20 bg-background">
       
-      {/* 1. Aura 3D Card Display */}
+      {/* 1. Aura 3D Card Display with Popup */}
       <div className="mb-16">
         <AuraCertificateCard />
-      </div>
-
-      {/* 2. Register Your Product */}
-      <div className="mb-16 md:mb-20 lg:mb-24 p-8 md:p-10 lg:p-12 bg-white border-t border-b border-divider flex flex-col items-center text-center">
-        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif mb-3 md:mb-4 tracking-wide text-foreground max-w-4xl">
-          Connect your account to <br />
-          Unlock your Certificate of Authenticity
-        </h3>
-        <p className="max-w-xl md:max-w-2xl lg:max-w-3xl text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed tracking-wide">
-          Join the Louis Vuitton community,          
-          gain access to exclusive services and    
-          blockchain secured proof of ownership.
-        </p>
-        <Link 
-          href="/account-creation"
-          className="inline-block mt-6 md:mt-8 px-8 md:px-10 py-2.5 md:py-3 border border-black text-[9px] md:text-[10px] tracking-[0.4em] uppercase hover:bg-black hover:text-white transition-all duration-500 text-center"
-        >
-          Connect or Create 
-        </Link>
       </div>
 
       {/* Section Header - Traceability */}

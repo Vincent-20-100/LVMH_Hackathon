@@ -30,7 +30,7 @@ return (
   <div className="flex flex-col items-center">
       {/* Grille de produits */}
       <div className="flex flex-wrap items-center justify-center py-10 gap-6 lg:gap-10 max-w-[1600px]">
-        <AuraCertificateCard />
+        <AuraCertificateCard variant="collection" />
         <EmptySlot />
         <EmptySlot />
         <EmptySlot />
