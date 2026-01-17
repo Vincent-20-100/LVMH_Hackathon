@@ -1,7 +1,7 @@
-import { HeroSection } from "@/components/hero-section"
-import { ConfidenceSection } from "@/components/confidence-section"
-import { EmpowermentSection } from "@/components/empowerment-section"
-import { SerenityFooter } from "@/components/serenity-footer"
+import { HeroSection } from "@/components/Page-DPP-section-1"
+import { ConfidenceSection } from "@/components/Page-DPP-section-2"
+import { EmpowermentSection } from "@/components/Page-DPP-section-3"
+import { SerenityFooter } from "@/components/Page-DPP-section-4"
 
 export default function DigitalProductPassport() {
   return (
