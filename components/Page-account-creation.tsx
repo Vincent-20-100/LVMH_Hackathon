@@ -1,16 +1,17 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Eye, EyeOff } from "lucide-react"
 import { StickyHeader } from "./feature-sticky-header"
 import { useRouter } from "next/navigation"
+import { useUser } from "@/contexts/user-context"
 
 
 // --- PAGE PRINCIPALE ---
 export default function AccountCreation() {
   const router = useRouter()
+  const { login } = useUser()
   const [showPassword, setShowPassword] = useState(false)
-  const [showTransition, setShowTransition] = useState(false)
   const [formData, setFormData] = useState({
   email: "john.doe@example.com",
   emailConfirmation: "john.doe@example.com",
@@ -30,16 +31,19 @@ export default function AccountCreation() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setShowTransition(true)
+    // Sauvegarder l'utilisateur dans le context
+    login({
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+    })
+    router.push('/collection')
   }
 
 
 
   return (
-    <>
-      {showTransition && <AuraCardTransition onComplete={() => router.push('/')} />}
-
-      <div className="min-h-screen bg-[#faf9f7] flex flex-col">
+    <div className="min-h-screen bg-[#faf9f7] flex flex-col">
         <StickyHeader />
 
         <main className="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-12 mt-24">
@@ -122,7 +126,6 @@ export default function AccountCreation() {
             </form>
           </div>
         </main>
-      </div>
-    </>
+    </div>
   )
 }

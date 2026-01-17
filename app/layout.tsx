@@ -4,6 +4,7 @@ import { Inter, Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Montserrat, JetBrains_Mono, Space_Mono} from "next/font/google"
+import { UserProvider } from "@/contexts/user-context"
 
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
@@ -73,7 +74,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} ${montserrat.variable} font-sans antialiased`}>
-        {children}
+        <UserProvider>
+          {children}
+        </UserProvider>
         <Analytics />
       </body>
     </html>
