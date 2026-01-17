@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
 const LV_URL = "https://account.louisvuitton.com/eng-us/mylv/registration/";
+const product_image = getAssetPath("B&W-louis-vuitton-sac-again--M25877_PM1_Side view.png");
 
 export function AuraCertificateCard() {
   const [isHovered, setIsHovered] = useState(false); // État pour le flou
@@ -71,26 +72,35 @@ export function AuraCertificateCard() {
                 <div className="flex-1 flex items-center justify-center my-4">
                   <div className="absolute w-35 h-35 bg-[#09dcba]/15 rounded-full blur-[40px] z-0 pointer-events-none" />
                   <img
-                    src={getAssetPath("card-aura-logo-2.png")}
+                    src={product_image}
                     alt="Aura Logo"
-                    className="w-[160px] h-auto object-contain z-1 opacity-80"
+                    className="w-[250px] h-auto object-contain z-1 opacity-90 filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
                   />
                 </div>
 
-                <div className="text-center mb-6 text-[#2d2d2d] tracking-[0.18em] leading-[1.3]" style={{ fontFamily: 'serif' }}>
-                  <h2 className="text-[22px] font-light">AURA</h2>
-                  <h2 className="text-[22px] font-light">BLOCKCHAIN</h2>
-                  <h2 className="text-[22px] font-light">CONSORTIUM</h2>
-                </div>
-
-                <div className="flex flex-col items-center justify-center pt-0.5 space-y-1 w-full overflow-hidden">
+                <div className="flex flex-col items-center justify-center mt-6 pt-0.5 space-y-4 w-full overflow-hidden">
                   <span className="text-[10px] sm:text-[13px] leading-tight whitespace-nowrap text-[#3d3d3d] uppercase font-bold tracking-[0.2em] sm:tracking-[0.3em] luxury-brand">
-                    Authenticity Certificate
+                   Certified unique product N°
                   </span>
-                  <span className="text-[16px] sm:text-[26px] text-[#3d3d3d] uppercase font-bold tracking-[0.15em] sm:tracking-[0.3em] luxury-brand font-mono blur-[2px] sm:blur-[4px] select-none whitespace-nowrap">
+                  <span className="text-[16px] sm:text-[30px] text-[#3d3d3d] uppercase font-bold tracking-[0.15em] sm:tracking-[0.3em] luxury-brand font-mono blur-[2px] sm:blur-[4px] select-none whitespace-nowrap">
                     #F7-RA598-LV
                   </span>
                 </div>
+
+                {/* <div className="flex items-center w-full my-4 px-4">
+                  <div className="relative flex items-center justify-center">
+                    <div className="absolute w-32 h-32 bg-[#09dcba]/15 rounded-full blur-[40px] z-0 pointer-events-none" />
+                    <img
+                      src={getAssetPath("card-aura-logo-2.png")}
+                      alt="Aura Logo"
+                      className="w-[20px] h-auto object-contain z-10 opacity-80"
+                    />
+                  </div>
+                  <div className="text-left text-[#2d2d2d] tracking-[0.18em] leading-[1.3]" style={{ fontFamily: 'serif' }}>
+                    <h2 className="text-[14px] font-light">AURA BLOCKCHAIN</h2>
+                  </div>
+                </div> */}
+
               </div>
             </div>
           </div>

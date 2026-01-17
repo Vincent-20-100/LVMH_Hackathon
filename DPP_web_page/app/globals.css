@@ -83,8 +83,12 @@
 .luxury-brand {
   font-family: var(--font-montserrat), 'Futura', sans-serif;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  /* Ajout pour la hauteur */
+  display: inline-block; /* Requis pour que transform fonctionne */
+  transform: scaleY(1.2); /* Augmente la hauteur de 20% */
+  transform-origin: bottom; /* Garde la base des lettres alignée */
 }
 
 @theme inline {

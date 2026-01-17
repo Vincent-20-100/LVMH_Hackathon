@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link'
 import { Shield, Check } from "lucide-react"
-import { AuraCertificateCard } from "./Feature-certificate-card"
+import { AuraCertificateCard } from "./Feature-certificate-card-v2"
 
 const traceabilityData = [
   { label: "Origin", value: "France", detail: "Asnières-sur-Seine Atelier" },
