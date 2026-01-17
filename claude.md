@@ -27,30 +27,20 @@ This is a **Digital Product Passport (DPP)** demo for Louis Vuitton (LVMH Hackat
 - Service Ledger (maintenance history)
 - User authentication flow (localStorage MVP)
 
-**Current Focus**: Implementing conditional rendering based on user authentication state.
+## Current Focus
 
-## Code Style
-
-- Use TypeScript with strict typing
-- Prefer Tailwind utility classes over custom CSS
-- Use Framer Motion for animations
-- Follow Next.js App Router conventions
-- Keep components modular and reusable
-
-## Important Files
-
-- `components/feature-certificate-card-v2.tsx` - 3D Aura card (blur/unblur code)
-- `components/page-dpp-section-3.tsx` - Service Ledger (conditional display)
-- `components/page-account-creation.tsx` - Auth form
-- `app/page.tsx` - Main DPP page
+The initial implementation of the user flow (anonymous vs. owner) is complete. The current focus is on refining the UI/UX and implementing the next round of features from the backlog.
 
 ## Development Notes
 
-- This is a **demo/MVP** - no real backend
-- User data stored in `localStorage`
-- Form pre-filled with "John Doe" for quick testing
-- Service Ledger currently visible to all (security issue to fix)
-- Code unique on card is blurred for everyone (needs conditional logic)
+- This is a **demo/MVP** - no real backend.
+- User data, including products, is stored in `localStorage`.
+- Form pre-filled with "John Doe" for quick testing.
+- **Service Ledger is now conditional**: only visible to product owners.
+- **Certificate code is now conditional**: un-blurred for product owners.
+- **Collection page (`/collection`) is implemented** with a product grid.
+- **Header and DPP page are personalized** for logged-in users.
+
 
 ---
 

@@ -3,7 +3,8 @@
 import { useRef, useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import ProductCarousel from "./feature-product-carousel"
-import {StickyHeader} from "./feature-sticky-header"
+import { StickyHeader } from "./feature-sticky-header"
+import { useUser } from "@/contexts/user-context"
 
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
@@ -31,6 +32,9 @@ const complementaryProducts = [        // <-- COMPLEMENTARY PRODUCTS IMAGES PATH
 export function PageDPPSection1() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [scrollAmount, setScrollAmount] = useState(200)
+  const { user } = useUser();
+  const product = user?.products.find(p => p.id === 'M25877');
+  const isOwner = product?.isOwner ?? false;
 
   // Hook pour ajuster le scrollAmount selon la taille de l'écran
   useEffect(() => {
@@ -89,6 +93,11 @@ export function PageDPPSection1() {
                   Again Bag
                 </a>
               </h1>
+              {isOwner && user && (
+                <p className="pt-2 text-sm text-amber-800">
+                  Welcome back, {user.firstName}. You own this iconic piece.
+                </p>
+              )}
             </div>
 
             <div className="h-px w-16 bg-gold" />

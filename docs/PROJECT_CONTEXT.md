@@ -23,7 +23,8 @@ NFC Chip → Aura Blockchain → Database → DPP Page Dynamique
 ```
 app/
 ├── page.tsx                    # DPP Page (4 sections)
-└── account-creation/          # Formulaire création compte
+├── account-creation/          # Formulaire création compte
+└── collection/                # 📌 Page Collection (dashboard user)
 
 components/
 ├── page-dpp-section-1.tsx     # Hero + Info produit + Carrousel
@@ -31,8 +32,11 @@ components/
 ├── page-dpp-section-3.tsx     # Aftercare + Service Ledger
 ├── page-dpp-section-4.tsx     # Section finale
 ├── feature-certificate-card-v2.tsx  # Carte 3D interactive
-├── page-account-creation.tsx  # Form avec animation transition
+├── page-account-creation.tsx  # Form connecté au UserContext
 └── feature-*.tsx              # Composants réutilisables
+
+contexts/
+└── user-context.tsx           # 📌 Gestion état utilisateur (localStorage)
 
 docs/
 ├── workflow-produit.md        # 📌 FLOW UTILISATEUR COMPLET
@@ -43,16 +47,19 @@ docs/
 ## 🔄 Workflow Utilisateur (voir workflow-produit.md)
 
 ### État Actuel
-- Page DPP unique pour tous
-- Code carte flouté pour tous
-- Service Ledger visible pour tous ⚠️
-- Pas de différenciation anonyme/propriétaire
+- ✅ Gestion d'état utilisateur via `UserContext` (localStorage)
+- ✅ Page `/collection` créée et fonctionnelle avec grille de produits
+- ✅ Formulaire connecté au context → redirige vers `/collection`
+- ✅ Liste de produits ajoutée au `UserContext` avec données démo
+- ✅ Code carte déflouté pour les propriétaires (`feature-certificate-card-v2.tsx`)
+- ✅ Service Ledger masqué pour les non-propriétaires (`page-dpp-section-3.tsx`)
+- ✅ Header et page DPP personnalisés pour les utilisateurs connectés
 
 ### Objectif Cible
-1. **Anonyme** → Carte floutée, Service Ledger masqué, popup engagement
-2. **Connexion** → Form pré-rempli, transition animée
-3. **Collection** → Dashboard produits possédés (à créer)
-4. **Propriétaire** → Carte défloutée, Service Ledger visible, personnalisation
+1. **Anonyme** → Carte floutée, Service Ledger masqué, popup engagement ✅
+2. **Connexion** → Form pré-rempli ✅, redirection vers Collection ✅
+3. **Collection** → Dashboard avec grille de produits (MVP) ✅
+4. **Propriétaire** → Carte défloutée, Service Ledger visible, personnalisation ✅
 
 ## 🎨 Produit Focus
 
@@ -66,19 +73,39 @@ docs/
 
 | Composant | Rôle | État |
 |-----------|------|------|
-| `feature-certificate-card-v2.tsx` | Carte Aura 3D avec code unique | ✅ Implémenté (flouté) |
-| `page-dpp-section-3.tsx` | Service Ledger maintenance | ✅ Visible (à conditionner) |
-| `page-account-creation.tsx` | Authentification | ✅ Form prêt (pas de persist) |
-| Collection Page | Dashboard utilisateur | ❌ À créer |
-| State Management | localStorage auth | ❌ À implémenter |
+| `contexts/user-context.tsx` | Gestion état user (localStorage) | ✅ Implémenté |
+| `app/collection/page.tsx` | Dashboard utilisateur | ✅ Grille de produits |
+| `page-account-creation.tsx` | Authentification | ✅ Connecté au context |
+| `feature-certificate-card-v2.tsx` | Carte Aura 3D avec code unique | ✅ Conditionné |
+| `page-dpp-section-3.tsx` | Service Ledger maintenance | ✅ Conditionné |
+| `feature-collection-grid.tsx`| Grille des produits de la collection | ✅ Implémenté (MVP) |
+| `feature-sticky-header.tsx` | Header personalisé | ✅ Implémenté |
 
 ## 🚀 Prochaines Étapes
 
-1. Implémenter gestion d'état (localStorage)
-2. Conditionner affichage Service Ledger
-3. Créer page Collection (/collection)
-4. Déflouter code carte pour propriétaires
-5. Personnaliser header et carrousel
+**Phase 1 (Terminée)**
+1. ~~Implémenter gestion d'état (localStorage)~~ ✅
+2. ~~Créer page Collection (/collection)~~ ✅
+3. ~~Ajouter liste de produits au context~~ ✅
+4. ~~Créer carrousel 3D de produits~~ ✅ (remplacé par une grille)
+5. ~~Conditionner affichage Service Ledger~~ ✅
+6. ~~Déflouter code carte pour propriétaires~~ ✅
+7. ~~Personnaliser header et carrousel sur page DPP~~ ✅
+
+**Backlog / Améliorations**
+- **Améliorer la Grille Collection :**
+  - Afficher plus de cartes placeholders.
+  - Améliorer le texte des placeholders.
+  - Rendre les placeholders plus sombres.
+- **Améliorer le Header de la Collection :**
+  - Réutiliser le `StickyHeader` de la page produit.
+  - Adapter les textes gauche/droite pour le contexte de la collection.
+- **Flux de Démonstration :**
+  - Vérifier que la carte est bien floutée avant connexion.
+  - Optionnel : Créer un mode "démo" où la connexion est perdue au rafraîchissement pour faciliter les présentations.
+- **Engagement Utilisateur :**
+  - Remplacer le CTA statique du Service Ledger par une pop-up (`Dialog`) apparaissant au-dessus de la carte 3D pour les utilisateurs non-connectés.
+
 
 ## 📝 Notes Importantes
 

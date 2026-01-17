@@ -3,18 +3,27 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 // Types
+interface Product {
+  id: string;
+  name: string;
+  image: string;
+  isOwner: boolean;
+}
+
 interface User {
   firstName: string;
   lastName: string;
   email: string;
+  products: Product[];
 }
 
 interface UserContextType {
   user: User | null;
   isConnected: boolean;
   isLoading: boolean;
-  login: (userData: User) => void;
+  login: (userData: Omit<User, 'products'>) => void;
   logout: () => void;
+  products: Product[];
 }
 
 // Context
@@ -25,6 +34,28 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Demo products data
+  const demoProducts: Product[] = [
+    {
+      id: "M25877",
+      name: "Again Bag",
+      image: "/louis-vuitton-sac-again--M25877_PM2_Front view.avif",
+      isOwner: true, // L'utilisateur est propriétaire de celui-ci pour la démo
+    },
+    {
+      id: "M45856",
+      name: "Capucines",
+      image: "/luxury-louis-vuitton-capucines-leather-handbag-bro.jpg",
+      isOwner: false,
+    },
+    {
+      id: "N41358",
+      name: "Neverfull",
+      image: "/B&W-louis-vuitton-sac-again--M25877_PM1_Side view.png",
+      isOwner: false,
+    },
+  ];
+
   // Charger l'utilisateur depuis localStorage au montage
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -34,9 +65,10 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setIsLoading(false);
   }, []);
 
-  const login = (userData: User) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
+  const login = (userData: Omit<User, 'products'>) => {
+    const fullUser: User = { ...userData, products: demoProducts };
+    setUser(fullUser);
+    localStorage.setItem("user", JSON.stringify(fullUser));
   };
 
   const logout = () => {
@@ -52,6 +84,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         isLoading,
         login,
         logout,
+        products: user?.products ?? [],
       }}
     >
       {children}

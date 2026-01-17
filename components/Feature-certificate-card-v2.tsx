@@ -8,6 +8,7 @@ import {
   useMotionTemplate,
   useScroll,
 } from "motion/react";
+import { useUser } from "@/contexts/user-context";
 import { cn } from "@/lib/utils";
 
 // --- UTILITAIRES ---
@@ -18,6 +19,10 @@ const product_image = getAssetPath("B&W-louis-vuitton-sac-again--M25877_PM1_Side
 
 export function AuraCertificateCard() {
   const [isHovered, setIsHovered] = useState(false); // État pour le flou
+  const { user } = useUser();
+
+  const product = user?.products.find(p => p.id === 'M25877');
+  const isOwner = product?.isOwner ?? false;
   
   const handleRedirect = () => {
     window.open(LV_URL, '_blank', 'noopener,noreferrer');
@@ -82,7 +87,10 @@ export function AuraCertificateCard() {
                   <span className="text-[10px] sm:text-[12px] leading-tight whitespace-nowrap text-[#3d3d3d] uppercase font-bold tracking-[0.2em] sm:tracking-[0.3em] luxury-brand">
                    Digital Product Passeport N°
                   </span>
-                  <span className="text-[16px] sm:text-[18px] text-[#3d3d3d] uppercase font-bold tracking-[0.15em] sm:tracking-[0.3em] luxury-brand font-mono  select-none whitespace-nowrap blur-[2px] sm:blur-[4px]"> {/*  blur-[2px] sm:blur-[4px] */}
+                  <span className={cn(
+                    "text-[16px] sm:text-[18px] text-[#3d3d3d] uppercase font-bold tracking-[0.15em] sm:tracking-[0.3em] luxury-brand font-mono select-none whitespace-nowrap",
+                    !isOwner && "blur-[2px] sm:blur-[4px]"
+                  )}>
                     M25877-RA598-BX498
                   </span>
                 </div>
@@ -95,6 +103,7 @@ export function AuraCertificateCard() {
     </div>
   );
 }
+
 
 const CometCard = ({
   rotateDepth = 40,

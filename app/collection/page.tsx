@@ -3,6 +3,7 @@
 import { useUser } from "@/contexts/user-context";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { FeatureCollectionGrid } from "@/components/feature-collection-grid";
 
 export default function CollectionPage() {
   const { user, isConnected, isLoading } = useUser();
@@ -36,11 +37,9 @@ export default function CollectionPage() {
         </div>
       </header>
 
-      {/* Contenu principal - placeholder */}
-      <section className="max-w-7xl mx-auto px-6 py-12">
-        <p className="text-gray-500 text-center">
-          Vos produits apparaîtront ici.
-        </p>
+      {/* Contenu principal - Grille de produits */}
+      <section className="max-w-full mx-auto px-6 py-12">
+        <FeatureCollectionGrid />
       </section>
     </main>
   );

@@ -1,10 +1,14 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import { useUser } from '@/contexts/user-context'
+import Link from 'next/link'
+import { User, LogIn } from 'lucide-react'
 
 export function StickyHeader() {
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const { user, isConnected } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,10 +57,20 @@ export function StickyHeader() {
           </span>
         </a>
 
-        {/* TEXTE DROITE (PARIS) */}
-        <span className="hidden md:block text-xs tracking-[0.2em] uppercase text-muted-foreground">
-          Paris
-        </span>
+        {/* TEXTE DROITE (PERSONNALISÉ) */}
+        <div className="hidden md:block">
+          {isConnected && user ? (
+            <Link href="/collection" className="flex items-center gap-2 text-xs tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors">
+              <User className="w-4 h-4" />
+              <span>Welcome, {user.firstName}</span>
+            </Link>
+          ) : (
+            <Link href="/account-creation" className="flex items-center gap-2 text-xs tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors">
+              <LogIn className="w-4 h-4" />
+              <span>Login</span>
+            </Link>
+          )}
+        </div>
 
       </div>
     </header>

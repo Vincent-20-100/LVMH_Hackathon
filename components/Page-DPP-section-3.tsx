@@ -1,7 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Play, MapPin, Calendar, ChevronRight } from "lucide-react"
+import { Play, MapPin, Calendar, ChevronRight, Lock } from "lucide-react"
+import { useUser } from "@/contexts/user-context"
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
@@ -13,7 +16,11 @@ const serviceLedger = [
 ]
 
 export function PageDPPSection3() {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const { user } = useUser();
+
+  const product = user?.products.find(p => p.id === 'M25877');
+  const isOwner = product?.isOwner ?? false;
 
   return (
     <section className="py-24 md:py-32 bg-secondary">
@@ -55,57 +62,72 @@ export function PageDPPSection3() {
         {/* Thin divider */}
         <div className="h-px bg-divider mb-24" />
 
-        {/* Service Ledger */}
-        <div className="max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6 md:mb-8">
-            <h3 className="text-[10px] md:text-xs tracking-[0.25em] uppercase text-muted-foreground">Service Ledger</h3>
-            <span className="text-[10px] md:text-xs text-muted-foreground">Last updated: Sept 2024</span>
-          </div>
-
-          <div className="space-y-px bg-divider">
-            {serviceLedger.map((entry, index) => (
-              <div
-                key={index}
-                className="bg-background p-5 md:p-6 lg:p-7 flex flex-col md:flex-row md:items-center gap-3 md:gap-6 lg:gap-8 hover:bg-background/80 transition-colors group cursor-pointer"
-              >
-                <div className="flex items-center gap-2 md:gap-3 md:w-28 lg:w-32">
-                  <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-muted-foreground" />
-                  <span className="text-xs md:text-sm text-muted-foreground">{entry.date}</span>
-                </div>
-                <div className="flex-1">
-                  <p className="font-serif text-base md:text-lg">{entry.service}</p>
-                  <div className="flex items-center gap-1.5 md:gap-2 mt-1">
-                    <MapPin className="w-3 h-3 text-muted-foreground" />
-                    <span className="text-[11px] md:text-xs text-muted-foreground">{entry.location}</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 md:gap-4">
-                  <span
-                    className={`text-[10px] md:text-xs tracking-[0.1em] uppercase px-2.5 md:px-3 py-1 whitespace-nowrap ${
-                      entry.status === "Completed"
-                        ? "bg-foreground text-background"
-                        : entry.status === "Recommended"
-                          ? "bg-gold/20 text-gold border border-gold"
-                          : "border border-divider text-muted-foreground"
-                    }`}
-                  >
-                    {entry.status}
-                  </span>
-                  <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
+        {isOwner ? (
+          <>
+            {/* Service Ledger */}
+            <div className="max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6 md:mb-8">
+                <h3 className="text-[10px] md:text-xs tracking-[0.25em] uppercase text-muted-foreground">Service Ledger</h3>
+                <span className="text-[10px] md:text-xs text-muted-foreground">Last updated: Sept 2024</span>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Find Artisan CTA */}
-        <div className="mt-12 md:mt-16 text-center">
-          <button className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 border border-foreground text-[10px] md:text-xs tracking-[0.2em] uppercase hover:bg-foreground hover:text-background transition-colors duration-300 group">
-            <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4" />
-            <span>Find a Certified Artisan</span>
-            <ChevronRight className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
+              <div className="space-y-px bg-divider">
+                {serviceLedger.map((entry, index) => (
+                  <div
+                    key={index}
+                    className="bg-background p-5 md:p-6 lg:p-7 flex flex-col md:flex-row md:items-center gap-3 md:gap-6 lg:gap-8 hover:bg-background/80 transition-colors group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2 md:gap-3 md:w-28 lg:w-32">
+                      <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-muted-foreground" />
+                      <span className="text-xs md:text-sm text-muted-foreground">{entry.date}</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-serif text-base md:text-lg">{entry.service}</p>
+                      <div className="flex items-center gap-1.5 md:gap-2 mt-1">
+                        <MapPin className="w-3 h-3 text-muted-foreground" />
+                        <span className="text-[11px] md:text-xs text-muted-foreground">{entry.location}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 md:gap-4">
+                      <span
+                        className={`text-[10px] md:text-xs tracking-[0.1em] uppercase px-2.5 md:px-3 py-1 whitespace-nowrap ${
+                          entry.status === "Completed"
+                            ? "bg-foreground text-background"
+                            : entry.status === "Recommended"
+                              ? "bg-gold/20 text-gold border border-gold"
+                              : "border border-divider text-muted-foreground"
+                        }`}
+                      >
+                        {entry.status}
+                      </span>
+                      <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Find Artisan CTA */}
+            <div className="mt-12 md:mt-16 text-center">
+              <button className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 border border-foreground text-[10px] md:text-xs tracking-[0.2em] uppercase hover:bg-foreground hover:text-background transition-colors duration-300 group">
+                <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                <span>Find a Certified Artisan</span>
+                <ChevronRight className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="text-center max-w-md mx-auto">
+            <Lock className="mx-auto h-8 w-8 text-muted-foreground" />
+            <h3 className="mt-4 font-serif text-xl md:text-2xl">Unlock Your Product’s History</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Register your product to access the complete Service Ledger, receive exclusive care notifications, and more.
+            </p>
+            <Link href="/account-creation">
+                <Button className="mt-6" size="lg">Register Your Product</Button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )
