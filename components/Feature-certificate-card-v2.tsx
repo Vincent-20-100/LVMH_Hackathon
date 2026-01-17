@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
 const LV_URL = "https://account.louisvuitton.com/eng-us/mylv/registration/";
-const product_image = getAssetPath("B&W-louis-vuitton-sac-again--M25877_PM1_Side view.png");
+const product_image = getAssetPath("SML-louis-vuitton-sac-again--M25877_PM1_Side_view.png");
 
 export function AuraCertificateCard() {
   const [isHovered, setIsHovered] = useState(false); // État pour le flou
@@ -68,9 +68,15 @@ export function AuraCertificateCard() {
                 }}
               />
               <div className="relative h-full flex flex-col px-8 pt-10 pb-6">
-                <div className="text-center mb-4 h-6 relative"> 
+                <div className="text-center mb-3 h-6 relative"> 
                   <h1 className="text-[20px] sm:text-2xl whitespace-nowrap tracking-[0.15em] sm:tracking-[0.1em] text-[#2d2d2d] luxury-brand font-bold absolute left-1/2 -translate-x-1/2 w-full">
                     LOUIS VUITTON
+                  </h1>
+                </div>
+
+               <div className="text-center mb-4 relative"> 
+                  <h1 className="text-[16px] sm:text-md whitespace-nowrap tracking-[0.15em] sm:tracking-[0.1em] text-[#2d2d2d] luxury-brand font-bold absolute left-1/2 -translate-x-1/2 w-full">
+                    Again
                   </h1>
                 </div>
 
