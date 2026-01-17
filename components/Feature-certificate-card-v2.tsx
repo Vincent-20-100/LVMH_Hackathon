@@ -47,34 +47,8 @@ export function AuraCertificateCard({ variant = "dpp" }: AuraCertificateCardProp
 
   const [isMobile, setIsMobile] = useState(false);
 
-  // Afficher le popup seulement sur la page DPP et si non connecté
-  const showPopup = variant === "dpp" && !isConnected;
-
   return (
     <div className="bg-white flex flex-col items-center p-2 relative">
-
-      {/* POPUP DE CONNEXION - Au-dessus de la carte */}
-      {showPopup && (
-        <motion.div
-          className="mb-6 p-6 md:p-8 bg-white border border-neutral-200 rounded-lg shadow-lg max-w-md text-center z-30"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <h3 className="text-lg md:text-xl font-serif mb-3 tracking-wide text-foreground">
-            Débloquez votre Certificat d'Authenticité
-          </h3>
-          <p className="text-xs md:text-sm text-muted-foreground leading-relaxed mb-5">
-            Connectez-vous pour accéder à votre preuve de propriété sécurisée par blockchain.
-          </p>
-          <button
-            onClick={handleRedirect}
-            className="px-6 md:px-8 py-2.5 bg-black text-white text-[10px] md:text-xs tracking-[0.3em] uppercase hover:bg-neutral-800 transition-colors duration-300"
-          >
-            Se connecter
-          </button>
-        </motion.div>
-      )}
 
       {/* 1. LE FLOU DE FOND : S'anime sur toute la page quand isHovered est vrai */}
       {!isMobile && (

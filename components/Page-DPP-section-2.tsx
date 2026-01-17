@@ -1,6 +1,7 @@
 "use client"
 import { Shield, Check } from "lucide-react"
 import { AuraCertificateCard } from "./feature-certificate-card-v2"
+import { ConnectionBanner } from "./feature-connection-banner"
 
 const traceabilityData = [
   { label: "Origin", value: "France", detail: "Asnières-sur-Seine Atelier" },
@@ -15,9 +16,10 @@ export function PageDPPSection2() {
   return (
     <section className="py-12 md:py-16 px-6 md:px-12 lg:px-20 bg-background">
       
-      {/* 1. Aura 3D Card Display with Popup */}
-      <div className="mb-16">
+      {/* 1. Aura 3D Card Display + Connection Banner Overlay */}
+      <div className="relative mb-16">
         <AuraCertificateCard />
+        <ConnectionBanner />
       </div>
 
       {/* Section Header - Traceability */}
