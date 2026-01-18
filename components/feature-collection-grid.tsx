@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AuraCertificateCard } from "./feature-certificate-card-v3";
+import { AuraCertificateCard } from "./feature-certificate-card";
 import { Plus } from "lucide-react";
 import { AddProductModal } from "./feature-add-product-modal";
 import { useUser } from "@/contexts/user-context";

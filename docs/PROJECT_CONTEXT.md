@@ -32,7 +32,7 @@ components/
 ├── page-dpp-section-2.tsx      # Carte Aura 3D + Traçabilité + Banner connexion
 ├── page-dpp-section-3.tsx      # Aftercare + Service Ledger
 ├── page-dpp-section-4.tsx      # Section finale
-├── feature-certificate-card-v3.tsx   # Carte 3D interactive (Motion)
+├── feature-certificate-card.tsx   # Carte 3D interactive (Motion)
 ├── feature-connection-banner.tsx     # Banner de connexion (glassmorphism)
 ├── feature-collection-grid.tsx       # Grille produits + emplacements vides
 ├── feature-product-carousel.tsx      # Carrousel images produit
@@ -92,7 +92,7 @@ Le projet supporte maintenant plusieurs produits. Les données sont gérées dan
 | Composant | Rôle | État |
 |-----------|------|------|
 | `user-context.tsx` | Gestion état user + products (localStorage) | ✅ |
-| `feature-certificate-card-v3.tsx` | Carte 3D avec flou conditionnel + redirection | ✅ |
+| `feature-certificate-card.tsx` | Carte 3D avec flou conditionnel + redirection | ✅ |
 | `feature-connection-banner.tsx` | Banner glassmorphism pour engagement | ✅ |
 | `feature-collection-grid.tsx` | Grille produits + slots vides cliquables | ✅ |
 | `feature-sticky-header.tsx` | Header avec props `leftContent`/`rightContent` | ✅ |
@@ -139,6 +139,36 @@ Le projet supporte maintenant plusieurs produits. Les données sont gérées dan
 - **Déconnexion** : `localStorage.clear()` ou bouton sur page collection
 - **Animations** : Motion pour la carte 3D et transitions
 - **Responsive** : Mobile-first design
+
+## 🚧 Points à Améliorer (Prochaine Session)
+
+### 1. Internationalisation et Traduction
+- [ ] Vérifier tous les textes en français
+- [ ] Traduire les éléments encore en anglais (UI, messages, labels)
+- [ ] Standardiser la langue de l'interface
+
+### 2. Fonctionnalité Transfert de Propriété
+- [ ] Ajouter un onglet/bouton "Transférer ma propriété" dans la page collection
+- [ ] Ajouter un onglet/bouton "Transférer ma propriété" dans la page produit DPP
+- [ ] Créer une page ou pop-up de transfert (modal Dialog)
+- [ ] Formulaire de transfert demandant l'email du destinataire
+- [ ] Simulation du processus de transfert (MVP/démo)
+
+### 3. Amélioration des Textes et UX
+- [ ] Améliorer les textes du bandeau sticky header ("Votre collection", etc.)
+- [ ] Réviser tous les textes générés par IA (sections DPP, descriptions)
+- [ ] Rendre les textes plus pertinents et alignés avec le ton Louis Vuitton
+- [ ] Améliorer le copywriting de la section Service Ledger
+- [ ] Réviser les textes de la page account-creation
+
+### 4. Script QR Code
+- [ ] Améliorer `python/QR-code_generator.py` pour intégrer une variable produit
+- [ ] Générer automatiquement un QR code pour chaque produit
+- [ ] Sauvegarder les QR codes dans `/public/products/{slug}/qr-code.png`
+- [ ] Permet d'avoir un repo plus sérieux si fouillé (QR codes par produit)
+
+### 5. Bugs à Corriger
+- [ ] Fix le bouton "Retour au produit" qui ne fonctionne pas sur la page collection
 
 ## 🔗 Références
 

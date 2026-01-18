@@ -23,7 +23,7 @@ Le projet a atteint les objectifs de la phase 1. Le parcours utilisateur est mai
 
 -   **`feature-sticky-header.tsx`**: **Personnalisé**. Affiche "Welcome, {user.firstName}" ou un lien de connexion.
 -   **`page-dpp-section-1.tsx`**: **Personnalisé**. Affiche un message de bienvenue si l'utilisateur est propriétaire.
--   **`feature-certificate-card-v2.tsx`**: **Conditionné**. Le code de la carte est déflouté si `isOwner` est `true`.
+-   **`feature-certificate-card.tsx`**: **Conditionné**. Le code de la carte est déflouté si `isOwner` est `true`.
 -   **`page-dpp-section-3.tsx`**: **Conditionné**. Le "Service Ledger" est masqué et remplacé par un CTA si l'utilisateur n'est pas propriétaire.
 -   **`feature-collection-grid.tsx`**: **Implémenté**. Affiche une grille statique avec la carte 3D du produit possédé et des placeholders pour les futurs produits.
 

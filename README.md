@@ -93,7 +93,7 @@ The repository is organized as follows:
 │   └── collection/page.tsx       # User's personalized product collection dashboard
 ├── components/                   # Reusable UI components
 │   ├── page-dpp-section-[1-4].tsx  # Modular sections composing the DPP page
-│   ├── feature-certificate-card-v3.tsx   # Interactive 3D product certificate component
+│   ├── feature-certificate-card.tsx   # Interactive 3D product certificate component
 │   ├── feature-collection-grid.tsx       # Displays user's product collection and empty slots
 │   └── ...                       # Other shared features and UI elements
 ├── contexts/                     # React Context providers for global state
