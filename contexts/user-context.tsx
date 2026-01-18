@@ -49,11 +49,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
     const againProduct = getProductById("M25877");
     const defaultProducts: Product[] = [];
 
-    if (againProduct) {
+    if (againProduct && againProduct.images.length > 0) {
       defaultProducts.push({
         id: againProduct.id,
         name: againProduct.name,
-        image: againProduct.thumbnailPath,
+        image: againProduct.images[0].src,
         isOwner: true,
       });
     }

@@ -1,20 +1,17 @@
 "use client";
 
 import { useRef, useEffect, useState } from 'react';
+import { ProductImage } from '@/lib/products';
 
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
-export default function ProductCarousel() {
+interface ProductCarouselProps {
+  images: ProductImage[];
+}
+
+export default function ProductCarousel({ images }: ProductCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const images = [
-    { src: getAssetPath("louis-vuitton-sac-again--M25877_PM2_Front view.avif"), alt: "Sac Again - Face" },
-    { src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Side view.avif"), alt: "Sac Again - Side" },
-    { src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Interior view.avif"), alt: "Sac Again - Interior" },
-    { src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Detail view.avif"), alt: "Sac Again - Detail" },
-    { src: getAssetPath("louis-vuitton-sac-again--M25877_PM1_Back view.avif"), alt: "Sac Again - Back" }
-  ];
 
   // Met à jour l'index des points quand on scroll au doigt
   const handleScroll = () => {
@@ -34,15 +31,25 @@ export default function ProductCarousel() {
   };
 
   const goToPrevious = () => {
+    if (!images) return;
     const nextIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
     scrollTo(nextIndex);
   };
 
   const goToNext = () => {
+    if (!images) return;
     const nextIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
     scrollTo(nextIndex);
   };
 
+  if (!images || images.length === 0) {
+    return (
+      <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl aspect-square mx-auto group flex items-center justify-center bg-gray-100">
+        <p className="text-gray-500">No images available</p>
+      </div>
+    );
+  }
+  
   return (
     <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl aspect-square mx-auto group">
       
@@ -56,7 +63,7 @@ export default function ProductCarousel() {
         {images.map((img, index) => (
           <div key={index} className="w-full h-full flex-shrink-0 snap-center flex items-center justify-center">
             <img
-              src={img.src}
+              src={getAssetPath(img.src)}
               alt={img.alt}
               className="w-full h-full object-contain select-none pointer-events-none"
             />

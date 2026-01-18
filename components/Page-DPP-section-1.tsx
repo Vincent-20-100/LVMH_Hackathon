@@ -5,10 +5,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import ProductCarousel from "./feature-product-carousel"
 import { StickyHeader } from "./feature-sticky-header"
 import { useUser } from "@/contexts/user-context"
+import { Product } from "@/lib/products"
 
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
-const complementaryProducts = [        // <-- COMPLEMENTARY PRODUCTS IMAGES PATHS --<
+const complementaryProducts = [
   { name: "Zippy Wallet",
     category: "Small Leather Goods",
     image: getAssetPath("zippy--1.png"),
@@ -29,23 +30,26 @@ const complementaryProducts = [        // <-- COMPLEMENTARY PRODUCTS IMAGES PATH
     url: "https://us.louisvuitton.com/eng-us/products/mng-silhouette-bb-bandeau-s00-nvprod6520152v/M97169"}
 ]
 
-export function PageDPPSection1() {
+interface PageDPPSection1Props {
+  product: Product;
+}
+
+export function PageDPPSection1({ product }: PageDPPSection1Props) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [scrollAmount, setScrollAmount] = useState(200)
   const { user } = useUser();
-  const product = user?.products.find(p => p.id === 'M25877');
-  const isOwner = product?.isOwner ?? false;
+  const ownedProduct = user?.products.find(p => p.id === product.id);
+  const isOwner = ownedProduct?.isOwner ?? false;
 
-  // Hook pour ajuster le scrollAmount selon la taille de l'écran
   useEffect(() => {
     const updateScrollAmount = () => {
       if (typeof window !== 'undefined') {
         const width = window.innerWidth
-        if (width >= 1536) setScrollAmount(280)      // 2xl
-        else if (width >= 1280) setScrollAmount(240) // xl
-        else if (width >= 1024) setScrollAmount(220) // lg
-        else if (width >= 768) setScrollAmount(200)  // md
-        else setScrollAmount(160)                    // sm
+        if (width >= 1536) setScrollAmount(280)
+        else if (width >= 1280) setScrollAmount(240)
+        else if (width >= 1024) setScrollAmount(220)
+        else if (width >= 768) setScrollAmount(200)
+        else setScrollAmount(160)
       }
     }
 
@@ -65,32 +69,24 @@ export function PageDPPSection1() {
 
   return (
     <section className="min-h-screen flex flex-col">
-      {/* Header */}
       <StickyHeader />
-
-      {/* Thin divider */}
       <div className="h-px bg-divider mx-6 md:mx-12 lg:mx-20" />
-
-      {/* Main Hero Content */}
       <div className="flex-1 flex flex-col lg:flex-row">
-        {/* Product Image - Left Side */}
         <div className="lg:w-3/5 flex items-center justify-center p-8 md:p-12 lg:p-20">
-          <ProductCarousel />
+          <ProductCarousel images={product.images} />
         </div>
-
-        {/* Product Info - Right Side */}
         <div className="lg:w-2/5 flex flex-col justify-center px-6 pb-12 md:px-12 lg:px-16 lg:pr-20">
           <div className="space-y-8">
             <div className="space-y-2">
-              <p className="text-xs tracking-[0.25em] uppercase text-muted-foreground">Leather Goods</p>
+              <p className="text-xs tracking-[0.25em] uppercase text-muted-foreground">{product.category}</p>
               <h1 className="text-l md:text-2xl tracking-[0.05em] text-balance">
                 <a 
-                  href="https://fr.louisvuitton.com/fra-fr/produits/sac-again-monogram-nvprod6550038v/M25877" 
+                  href={product.link}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:opacity-70 transition-opacity"
                 >
-                  Again Bag
+                  {product.name}
                 </a>
               </h1>
               {isOwner && user && (
@@ -99,36 +95,32 @@ export function PageDPPSection1() {
                 </p>
               )}
             </div>
-
             <div className="h-px w-16 bg-gold" />
-
             <div className="space-y-4">
               <div className="flex items-baseline justify-between border-b border-divider pb-3">
                 <span className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Reference</span>
-                <span className="text-sm tracking-wide">M25877</span>
+                <span className="text-sm tracking-wide">{product.id}</span>
               </div>
-              <div className="flex items-baseline justify-between border-b border-divider pb-3">
-                <span className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Model</span>
-                <span className="text-sm tracking-wide">Monogram</span>
-              </div>
-              <div className="flex items-baseline justify-between border-b border-divider pb-3">
-                <span className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Size</span>
-                <span className="text-sm tracking-wide">45 x 33 x 13 cm</span>
-              </div>
+              {product.model && (
+                <div className="flex items-baseline justify-between border-b border-divider pb-3">
+                  <span className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Model</span>
+                  <span className="text-sm tracking-wide">{product.model}</span>
+                </div>
+              )}
+              {product.size && (
+                <div className="flex items-baseline justify-between border-b border-divider pb-3">
+                  <span className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Size</span>
+                  <span className="text-sm tracking-wide">{product.size}</span>
+                </div>
+              )}
             </div>
-
             <p className="text-sm text-muted-foreground leading-relaxed">
-              This authentic piece has been verified through our secure blockchain-enabled traceability system. Each
-              detail reflects the Maison's commitment to exceptional craftsmanship.
+              {product.description}
             </p>
           </div>
         </div>
       </div>
-
-      {/* Thin divider */}
       <div className="h-px bg-divider mx-6 md:mx-12 lg:mx-20" />
-
-      {/* Complementary Products Scroll */}
       <div className="px-6 py-4 md:px-12 lg:px-20">
         <div className="flex items-center justify-between mb-6 md:mb-8">
           <h3 className="text-xs md:text-sm tracking-[0.25em] uppercase text-muted-foreground">Complementary Pieces</h3>
@@ -149,7 +141,6 @@ export function PageDPPSection1() {
             </button>
           </div>
         </div>
-
         <div
           ref={scrollRef}
           className="flex gap-4 md:gap-6 lg:gap-8 overflow-x-auto scrollbar-hide pb-4"
@@ -177,5 +168,5 @@ export function PageDPPSection1() {
         </div>
       </div>
     </section>
-  )
+  );
 }

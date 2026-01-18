@@ -2,6 +2,7 @@
 import { Shield, Check } from "lucide-react"
 import { AuraCertificateCard } from "./feature-certificate-card-v3"
 import { ConnectionBanner } from "./feature-connection-banner"
+import { Product } from "@/lib/products"
 
 const traceabilityData = [
   { label: "Origin", value: "France", detail: "Asnières-sur-Seine Atelier" },
@@ -12,24 +13,25 @@ const traceabilityData = [
   { label: "Serial", value: "LV•2024•09•48864", detail: "Blockchain verified" },
 ]
 
-export function PageDPPSection2() {
+interface PageDPPSection2Props {
+  product: Product;
+}
+
+export function PageDPPSection2({ product }: PageDPPSection2Props) {
   return (
     <section className="py-12 md:py-16 px-6 md:px-12 lg:px-20 bg-background">
       
-      {/* 1. Aura 3D Card Display + Connection Banner Overlay */}
       <div className="relative mb-16">
-        <AuraCertificateCard />
+        <AuraCertificateCard productId={product.id} />
         <ConnectionBanner />
       </div>
 
-      {/* Section Header - Traceability */}
       <div className="flex items-center gap-4 mb-12">
         <div className="h-px flex-1 bg-divider" />
         <h3 className="text-xs tracking-[0.3em] uppercase text-muted-foreground">Traceability & Provenance</h3>
         <div className="h-px flex-1 bg-divider" />
       </div>
 
-      {/* Traceability Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-divider">
         {traceabilityData.map((item, index) => (
           <div key={index} className="bg-background p-6 md:p-8 lg:p-10 group hover:bg-secondary transition-colors duration-300">
@@ -43,7 +45,6 @@ export function PageDPPSection2() {
         ))}
       </div>
 
-      {/* Verification Badge */}
       <div className="mt-12 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
         <div className="flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 border border-divider">
           <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-green-500 animate-pulse" />

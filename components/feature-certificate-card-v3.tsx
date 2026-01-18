@@ -63,8 +63,9 @@ export function AuraCertificateCard({ variant = "dpp", productId = "M25877" }: A
 
   const handleRedirect = () => {
     if (variant === "collection") {
-      // Depuis la collection → aller vers la page produit
-      router.push("/");
+      if (product) {
+        router.push(`/products/${product.slug}`);
+      }
     } else {
       // Depuis la page DPP
       if (isConnected) {
@@ -274,7 +275,7 @@ const CometCard = ({
         <motion.div
           className="pointer-events-none absolute inset-0 z-[100] h-full w-full rounded-[16px]"
           style={{
-            background: useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 30%, transparent 60%)`,
+            background: useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 25%, transparent 80%)`,
             mixBlendMode: "color-dodge",
           }}
         />
