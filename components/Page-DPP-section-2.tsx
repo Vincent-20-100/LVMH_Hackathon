@@ -45,16 +45,6 @@ export function PageDPPSection2({ product }: PageDPPSection2Props) {
         ))}
       </div>
 
-      <div className="mt-12 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
-        <div className="flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 border border-divider">
-          <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-[10px] md:text-xs tracking-[0.15em] uppercase text-muted-foreground whitespace-nowrap">Blockchain Verified</span>
-        </div>
-        <div className="flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 border border-divider">
-          <Shield className="w-3 h-3 md:w-4 md:h-4 text-gold" />
-          <span className="text-[10px] md:text-xs tracking-[0.15em] uppercase text-muted-foreground whitespace-nowrap">Authentic Product</span>
-        </div>
-      </div>
     </section>
   )
 }
