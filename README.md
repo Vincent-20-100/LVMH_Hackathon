@@ -2,11 +2,11 @@
 
 A project for the LVMH Hackathon at Albert School, aiming to transform the Digital Product Passport (DPP) from a regulatory requirement into a powerful tool for building trust, prestige, and long-term client engagement.
 
-## ✨ Project Vision
+## 🎯 Project Vision
 
 Our vision is to transform the mandatory disclosure of the Digital Product Passport into a powerful lever for trust, prestige, and long-term client engagement for Louis Vuitton. We've created a comprehensive framework and strategic roadmap that integrates technical architecture with a premium user experience, turning regulatory mandates into brand opportunities.
 
-## 🎯 Core Concept: Emotional Encrage
+## ❤️ Core Concept: Emotional Encrage
 
 The user experience is meticulously crafted around a four-stage emotional journey, designed not just to inform, but to deeply anchor the client's connection with the product and the Maison:
 
@@ -17,26 +17,25 @@ The user experience is meticulously crafted around a four-stage emotional journe
 
 This emotional journey is carefully planned to seamlessly transition the client from subconscious desire to conscious trust, fostering a lasting bond.
 
-### Personal Collection 
-Beyond the seamless flow, user satisfaction is elevated by a unique new feature: a personal collection of high-fidelity 3D authenticity certification cards. This digital showcase not only fosters a strong sense of exclusivity and personalization but also subtly cultivates a desire to expand and complete the collection, a feeling powerfully reinforced by the presence of artfully presented empty slots.
-
 ## 💡 The Key Differentiator: Invitation-Only Events
 
 By linking a product's unique ID to a user's account, we can organize exclusive, invitation-only events for product owners. This reinforces the brand's prestige and drives customer lifetime value.
 
-## ⬇️​ User flow and backend orchestration  
+## ✨ Key Features
 
-1.  **Anonymous Visitor:** Lands on the site and is redirected to the `/collection` page. If not logged in, they are prompted to create an account.
-2.  **Account Creation:** A simple form (pre-filled for demo purposes) allows the user to create an account.
-3.  **Collection Page:** The user sees their collection of products. They can click on a product to view its DPP.
-4.  **Product Owner on DPP Page:** When a logged-in user views a DPP page, they see the full details, including the unblurred certificate number and access to the service ledger.
-6. **Transfer of ownership:** A logged-in user can initiate the transfer of one of their authenticity certificates to another user. The backend system will carry out the ownership change, including the corresponding update on the blockchain.
+### Personal Collection 
+Beyond the seamless flow, user satisfaction is elevated by a unique new feature: a personal collection of high-fidelity 3D authenticity certification cards. This digital showcase not only fosters a strong sense of exclusivity and personalization but also subtly cultivates a desire to expand and complete the collection, a feeling powerfully reinforced by the presence of artfully presented empty slots.
 
-The DPP framework follows a detailed flow, from the initial scan to the final ownership certification:
+### Transfer of Ownership
+A logged-in user can initiate the transfer of one of their authenticity certificates to another user. The backend system will carry out the ownership change, including the corresponding update on the blockchain.
+
+## 🔄 End-to-End User Journey
+
+The following diagram illustrates the complete user journey, from the initial physical product interaction to the final certified digital ownership and beyond.
 
 ```mermaid
 graph TD
-    A[User scans<br>the NFC chip] --> B[That opens the<br>public product page] 
+    A[User scans<br>the NFC chip] --> B[Opens the<br>public product page] 
     B --> C["The page shows<br>Storytelling, details<br>and a login button"]
     C --> D["User clicks on<br>the login button"]
     D --> E["User logs in or<br>creates an account"]
@@ -48,7 +47,7 @@ graph TD
     G --> J
     E --> H
     J --> F
-    H --> J[The user transfer his card<br>to another user]
+    H --> J[The user transfers his card<br>to another user]
 
     %% ──────────────────────────────────────────────
     %% Styles
@@ -68,29 +67,11 @@ graph TD
     linkStyle 4,5,6,7,8,9   stroke:#b95cdb,stroke-width:2.5px
     linkStyle 11,12        stroke:#2c5de6,stroke-width:2.5px
 ```
-```mermaid
-graph TD
-    P[Public steps]:::public 
-    U[User flow]:::user   
-    K[Backend flow]:::backend
-    L[New user transfer]:::newuser
-
-    %% Styles
-    classDef public    fill:#d1fae5,stroke:#059669,stroke-width:2.5px
-    classDef user      fill:#fef3c7,stroke:#d97706,stroke-width:2.5px
-    classDef backend   fill:#e9d5ff,stroke:#7c3aed,stroke-width:2.5px
-    classDef newuser   fill:#c3d1f7,stroke:#2c5de6,stroke-width:2.5px
-```
-
-## 🚀 Technical Architecture
-
-The project is built on a modern, robust, and scalable technical stack:
-
--   **Frontend:** Next.js 16, React 19, TypeScript
--   **Styling:** TailwindCSS 4, Framer Motion for animations
--   **UI Components:** Radix UI
--   **Blockchain:** Aura Blockchain for product authenticity
--   **Authentication:** A simplified demo using localStorage
+**Color Key:**
+- 🟨 **User Flow:** Actions taken by the user.
+- 🟩 **Public View:** Steps visible to any visitor.
+- 🟪 **Backend Flow:** Simulated backend and blockchain interactions.
+- 🟦 **New User Transfer:** The process for transferring ownership.
     
 ## 🏗️ App Architecture
 
@@ -117,15 +98,41 @@ The repository is organized as follows:
 │   └── ...                       # Other shared features and UI elements
 ├── contexts/                     # React Context providers for global state
 │   └── user-context.tsx          # Manages user authentication and product ownership state
+├── hooks/                        # Custom React hooks
+│   └── use-mobile.ts             # Hook to detect mobile devices
 ├── lib/                          # Utility functions and data
 │   └── products.ts               # Product data definitions and access helpers (e.g., getProductBySlug)
+├── python/                       # Python utilities
+│   ├── QR-code_generator.py      # Script to generate QR codes for DPP pages
+│   └── DPP-qr-code.png           # Generated QR code image
 └── docs/                         # Project documentation and resources
     ├── PROJECT_CONTEXT.md        # Comprehensive project overview
     └── ...                       # Other documentation files
 ```
 
+## 📱 QR Code Generation
+
+The `python/` directory contains a utility script (`QR-code_generator.py`) for generating QR codes that link to product DPP pages.
+
+**Important Note:** Unlike secure NFC chips, QR codes cannot certify a unique product UID. They are suitable for accessing the public product page (storytelling, details) but do not support the full user-linked certification flow. This makes QR codes ideal for:
+- Demo/MVP presentations
+- Less advanced deployments requiring only public product information
+- Print materials and basic product traceability
+
+For complete ownership certification and blockchain integration, secure NFC chips with unique UIDs are required.
+
+## 🚀 Technical Stack
+
+The project is built on a modern, robust, and scalable technical stack:
+
+-   **Frontend:** Next.js 16, React 19, TypeScript
+-   **Styling:** TailwindCSS 4, Framer Motion for animations
+-   **UI Components:** Radix UI
+-   **Blockchain:** Aura Blockchain for product authenticity
+-   **Authentication:** A simplified demo using localStorage
+
 ## 🌐 Deployment
 
-This project is designed to be deployed as a static site on **GitHub Pages**. No complex installation or build process is required. The repository can be cloned and the `out` directory can be served statically.
+This project is designed for seamless deployment as a static site on **GitHub Pages**. This serverless approach was chosen for its high performance, enhanced security, and cost-effectiveness, making it an ideal solution for a robust proof-of-concept. The repository can be cloned and the `out` directory can be served statically without any complex installation.
 
 [---> ACCESS TO THE DEPLOYED WEBSITE HERE <---](https://vincent-20-100.github.io/LVMH_Hackathon/)
