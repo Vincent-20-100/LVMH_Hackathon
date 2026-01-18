@@ -1,0 +1,311 @@
+LVMH
+ALBERTHON
+Digital Product Passport (Use Case 3)
+
+DDP Framework
+Enzo MERET
+Vincent LAMY
+
+Digital Product
+Passport
+Transforming mandatory disclosure into a powerful lever
+for trust, prestige, and long-term client engagement.
+This presentation details a comprehensive framework and strategic roadmap for the
+Digital Product Passport.
+We integrate technical architecture with premium user experience to transform
+regulatory mandates into brand opportunities.
+Our objective is to provide an actionable model that inspires LVMH decision-makers
+and sets a new global benchmark for the luxury industry.
+
+Brand & Category Selection
+Louis Vuitton Leather Goods
+Why this choice?
+The LVMH Flagship:
+Louis Vuitton stands as the most iconic Maison within
+the LVMH portfolio, making it the natural choice to
+pilot the Digital Product Passport Framework.
+Natural Product Fit:
+Leather goods is a category where provenance and
+rare materials are already highly regulated.
+Alignment with our project:
+This choice serves as the perfect foundation
+for our "Key Differentiation Asset" that we will
+explain later.
+
+03
+
+04
+
+Technical DPP Framework
+
+DPP
+
+page
+
+NFC chips:
+Every leather item
+features a discreetly
+integrated, highsecurity NFC chip.
+
+Aura blockchain:
+Each chip corresponds to
+a unique product token
+on the Aura Blockchain to
+prevent identity
+duplication.
+
+Database:
+Our secure cloud
+storage manages the
+link between unique
+item IDs, the blockchain
+and the customer’s
+authenticated profile.
+
+DPP page:
+Every product
+generates its own
+dynamic DPP page,
+and every owner
+receives a verified
+digital certificate.
+
+05
+
+User Journey Framework
+DPP
+
+page
+
+NFC scan:
+Following purchase, the
+owner initiates the digital
+journey by scanning the
+unique NFC chip discreetly
+integrated within the
+product.
+
+DPP Page:
+The scan provides
+frictionless access to
+the DPP page bridging
+insights about reliability,
+sustainability and
+personalized aftercare.
+
+User connexion :
+A seamless invitation to
+sign-in or create an
+account, linking the
+unique product ID to
+the user’s profile,
+oppening the way to
+unique invitation-only
+experiences.
+
+Certification :
+Once a user is signed
+in from a secure NFC
+scan, the DPP page
+transforms into a
+verified Certificate of
+Authenticity anchored
+on the Aura Blockchain.
+
+Page Content Architecture
+
+06
+
+1. Attraction
+Immersive Product Storytelling
+
+2. Confidence
+Certificate of Authenticity
+
+3. Empowerment
+Lifelong Care & longevity
+
+4. Serenity
+Transparency & Compliance
+
+The DDP emotion funnel
+First Attraction, then Confidence, folow
+by Empowerment, and finaly Serenity.
+This emotional journey, is carfuly plan to
+seamlessly transitioning the client from
+subconscious desire to conscious trust.
+
+Page Content Architecture
+
+07
+
+1. Attraction
+Immersive Product Storytelling
+The experience begins at the very top of the interface with an
+immersive full-screen header designed to capture emotional
+attention through high-fidelity luxury references before any
+data retrieval occurs.
+Powerful product visual, such as a high-definition image
+carousel or an atmospheric promotional video, will anchor
+the client immediately within the Louis Vuitton brand
+universe.
+By prioritizing this visual storytelling, the system triggers
+subconscious desire and establishes a prestigious context for
+the information that follows. Furthermore, the layout
+discreetly integrates related or complementary items with
+direct links to product pages, subtly extending the brand
+narrative while enriching the client’s digital style journey.
+
+2. Confidence
+Certificate of Authenticity
+
+3. Empowerment
+Lifelong Care & longevity
+
+4. Serenity
+Transparency & Compliance
+
+Page Content Architecture
+
+08
+
+2. Confidence
+Certificate of Authenticity
+Once the desire is established, we provide instant proof of
+authenticity via the Aura Blockchain. This transforms
+"storytelling" into "story-proving".
+The page features call-to-action banner explicitly stating:
+"Unlock your Certificate of Authenticity." as gateway to the
+Aura Blockchain integration, with a seamless sign-in or
+account creation flow. Once the user profile is linked, the
+banner transforms into a Digital Certificate of Authenticity.
+Below this interactive layer, comprehensive access to
+foundational Traceability Info and Maison Commitments will
+be displayed, such as the origin and chain of custody,
+ensuring that the transition from "storytelling" to "storyproving" is both transparent and rewarding for every visitor.
+
+1. Attraction
+Immersive Product Storytelling
+
+3. Empowerment
+Lifelong Care & longevity
+
+4. Serenity
+Transparency & Compliance
+
+Page Content Architecture
+
+09
+
+3. Empowerment
+Lifelong Care & longevity
+We shifts the focus toward the product's future, presenting
+a dedicated aftercare hub designed to reinforce product
+durability.
+High-end maintenance tutorials and "savoir-faire" videos,
+or photo will be displayed. To facilitate seamless
+maintenance, the page includes a directory of Maisoncertified repair artisans and authorized service centers.
+This comprehensive traceability of care not only protects
+the item's long-term value but also deepens the client's
+relationship with the Maison through proactive, lifelong
+support.
+
+1. Attraction
+Immersive Product Storytelling
+
+2. Confidence
+Certificate of Authenticity
+
+4. Serenity
+Transparency & Compliance
+
+Page Content Architecture
+
+10
+
+4. Serenity
+Transparency & Compliance
+The final layer of the interface, provides the regulatory
+transparency informations. Positioned at the bottom of the
+page to ensure technical details do not disrupt the initial
+emotional spark, this section offers a summarized view of
+mandatory data fields.
+Key disclosures include the precise traceability information
+regarding the country of manufacture and main
+transformation steps. Furthermore, verified environmental
+footprint metrics, specifically detailing carbon and water
+impact, as well as material compositions and compliance
+certifications for animal welfare or responsible sourcing.
+By presenting these details, the Maison transforms a legal
+obligation into a definitive signal of excellence and
+transparency.
+
+1. Attraction
+Immersive Product Storytelling
+
+2. Confidence
+Certificate of Authenticity
+
+3. Empowerment
+
+The Key Differentiator
+
+11
+
+Invitation-Only Events
+The blockchain-powered DPP offers a definitive opportunity to
+anchor LVMH deeper into the essence of luxury exclusivity.
+By linking a personal account to a product's UID, the customer is officially recognized as the
+owner and user of a specific creation. This recognition enables the organization of unique,
+product-specific events reserved strictly for dedicated owners.
+These invite-only, marketing-free experiences act as highly selective rewards, reinforcing
+the Maison’s prestigious image while significantly driving Customer Lifetime Value.
+The strategic unpredictability of these invitations fosters desire among the non-invited,
+encouraging the acquisition of more prestigious items to gain the privilege of being chosen.
+
+Roadmap Toward Next Retrieval
+The next phase (D2) focuses on bringing the Louis Vuitton DPP framework to life
+through a functional, immersive prototype that demonstrates the end-to-end user journey.
+
+S2 (Dec 19 - 22)
+
+S3 (Dec 22 - 28)
+
+S4 (Dec 29 - Jan 04)
+
+Initiate the github repo.
+
+Configure the secure NFC
+chips and/or QR codes to
+point toward the DPP page.
+
+Build the interactive DPP page
+integrating high-fidelity visuals.
+Implement the dynamic content.
+
+Finalize the cloud storage
+structure (links IDs to
+blockchain tokens)
+
+Code the aftercare hub and user
+registration flow to demonstrate
+how ownership unlocks exclusive
+"invitation-only" experiences
+
+Create the DPP skeleton.
+Define the individual tasks for
+each one.
+
+Map the product
+authentication flow.
+
+S5 (Jan 05 - 09)
+D2 retrieval
+(Prototype Preview)
+Refine the delivarable.
+Record the demo.
+Post the video on blackboard.
+
+12
+
+
