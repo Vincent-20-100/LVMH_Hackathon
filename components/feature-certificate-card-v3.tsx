@@ -131,7 +131,7 @@ export function AuraCertificateCard({ variant = "dpp", productId = "M25877" }: A
                 <div className="flex-1 flex items-center justify-center my-4">
                   <div className="absolute w-35 h-35 bg-[#09dcba]/15 rounded-full blur-[40px] z-0 pointer-events-none" />
                   <img
-                    src={productImage}
+                    src={getAssetPath(productImage)}
                     alt={product.name}
                     className="w-[250px] h-auto object-contain z-1 opacity-90 filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
                   />

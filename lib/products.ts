@@ -29,52 +29,51 @@ export interface Product {
 
 
   // Médias
-  images: ProductImage[];
-  thumbnailPath: string;         // Pour grille collection
-
-  // Métadonnées
-  createdAt: string;
-  updatedAt: string;
-}
-
-// Helper pour les chemins d'images
-const getProductImagePath = (productId: string, filename: string) =>
-  `/LVMH_Hackathon/products/${productId}/${filename}`;
-
-// Helper pour créer un produit (évite de répéter id/name)
-const product = (data: {
-  id: string;
-  name: string;
-  slug: string;
-  link?: string;
-  category: string;
-  model?: string;
-  size?: string;
-  price?: number;
-  shortDescription?: string;
-  description: string;
-  details?: string[];
-  fits?: string[];
-  sustainability?: string;
-  productCare?: string;
-  imageViews: Array<'Front' | 'Back' | 'Side' | 'Detail' | 'Interior' | 'Interior2' | 'Other'>; // 3-5 images
-}): Product => {
-  const baseProduct: Product = {
-    id: data.id,
-    slug: data.slug,
-    name: data.name,
-    link: data.link,
-    category: data.category,
-    description: data.description,
-    images: data.imageViews.map(view => ({
-      src: getProductImagePath(data.id, `${view}.avif`),
-      alt: `${data.name} - ${view.charAt(0).toUpperCase() + view.slice(1)} view`,
-      view
-    })),
-    thumbnailPath: getProductImagePath(data.id, 'thumbnail.png'),
-    createdAt: '2026-01-18',
-    updatedAt: '2026-01-18',
-  };
+    images: ProductImage[];
+  
+    // Métadonnées
+    createdAt: string;
+    updatedAt: string;
+  }
+  
+  // Helper pour les chemins d'images
+  // Images organisées par slug dans /public/products/{slug}/
+  const getProductImagePath = (slug: string, view: string) =>
+    `/products/${slug}/${view.toLowerCase()}.avif`;
+  
+  // Helper pour créer un produit (évite de répéter id/name)
+  const product = (data: {
+    id: string;
+    name: string;
+    slug: string;
+    link?: string;
+    category: string;
+    model?: string;
+    size?: string;
+    price?: number;
+    shortDescription?: string;
+    description: string;
+    details?: string[];
+    fits?: string[];
+    sustainability?: string;
+    productCare?: string;
+    imageViews: Array<'Front' | 'Back' | 'Side' | 'Detail' | 'Interior' | 'Interior2' | 'Other'>; // 3-5 images
+  }): Product => {
+    const baseProduct: Product = {
+      id: data.id,
+      slug: data.slug,
+      name: data.name,
+      link: data.link,
+      category: data.category,
+      description: data.description,
+      images: data.imageViews.map(view => ({
+        src: getProductImagePath(data.slug, view),
+        alt: `${data.name} - ${view} view`,
+        view
+      })),
+      createdAt: '2026-01-18',
+      updatedAt: '2026-01-18',
+    };
 
   // Ajouter les propriétés optionnelles si elles existent
   if (data.model !== undefined) baseProduct.model = data.model;

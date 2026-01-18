@@ -11,17 +11,46 @@ import {
 import { useUser } from "@/contexts/user-context";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { getProductById } from "@/lib/products";
 
 // --- UTILITAIRES ---
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
-const product_image = getAssetPath("louis-vuitton-again--M25877_PM1_Side view.avif");
+// Génère un code certificat aléatoire basé sur le pattern: ID-XX999-XX999
+const generateCertificateCode = (productId: string): string => {
+  const randomLetters = () => {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    return letters[Math.floor(Math.random() * letters.length)] +
+           letters[Math.floor(Math.random() * letters.length)];
+  };
+
+  const randomNumbers = () => {
+    return Math.floor(100 + Math.random() * 900).toString(); // 3 chiffres entre 100-999
+  };
+
+  return `${productId}-${randomLetters()}${randomNumbers()}-${randomLetters()}${randomNumbers()}`;
+};
 
 interface AuraCertificateCardProps {
   variant?: "dpp" | "collection";
+  productId?: string; // ID du produit à afficher (par défaut M25877)
 }
 
-export function AuraCertificateCard({ variant = "dpp" }: AuraCertificateCardProps) {
+export function AuraCertificateCard({ variant = "dpp", productId = "M25877" }: AuraCertificateCardProps) {
+  // Récupérer les données du produit
+  const product = getProductById(productId);
+
+  // Fallback si le produit n'existe pas
+  if (!product) {
+    console.error(`Product with ID ${productId} not found`);
+    return null;
+  }
+
+  // Utiliser la première image ou le thumbnail pour l'affichage
+  const productImage = product.thumbnailPath || product.images[0]?.src;
+
+  // Générer le code certificat une seule fois (ne change pas au re-render)
+  const [certificateCode] = useState(() => generateCertificateCode(product.id));
   const [isHovered, setIsHovered] = useState(false);
   const { isConnected } = useUser();
   const router = useRouter();
@@ -92,17 +121,17 @@ export function AuraCertificateCard({ variant = "dpp" }: AuraCertificateCardProp
                   </h1>
                 </div>
 
-               <div className="text-center mb-4 relative"> 
+               <div className="text-center mb-4 relative">
                   <h1 className="text-[16px] sm:text-md whitespace-nowrap tracking-[0.15em] sm:tracking-[0.1em] text-[#2d2d2d] luxury-brand font-bold absolute left-1/2 -translate-x-1/2 w-full">
-                    Again
+                    {product.name}
                   </h1>
                 </div>
 
                 <div className="flex-1 flex items-center justify-center my-4">
                   <div className="absolute w-35 h-35 bg-[#09dcba]/15 rounded-full blur-[40px] z-0 pointer-events-none" />
                   <img
-                    src={product_image}
-                    alt="Aura Logo"
+                    src={productImage}
+                    alt={product.name}
                     className="w-[240px] h-[240px] scale-150 object-cover z-1 opacity-90 filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
                   />
                 </div>
@@ -115,7 +144,7 @@ export function AuraCertificateCard({ variant = "dpp" }: AuraCertificateCardProp
                     "text-[16px] sm:text-[18px] text-[#3d3d3d] uppercase font-bold tracking-[0.15em] sm:tracking-[0.3em] luxury-brand font-mono select-none whitespace-nowrap",
                     isBlurred && "blur-[2px] sm:blur-[4px]"
                   )}>
-                    M25877-RA598-BX498
+                    {certificateCode}
                   </span>
                 </div>
 

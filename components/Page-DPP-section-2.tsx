@@ -1,6 +1,6 @@
 "use client"
 import { Shield, Check } from "lucide-react"
-import { AuraCertificateCard } from "./feature-certificate-card-v2"
+import { AuraCertificateCard } from "./feature-certificate-card-v3"
 import { ConnectionBanner } from "./feature-connection-banner"
 
 const traceabilityData = [
