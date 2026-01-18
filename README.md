@@ -6,16 +6,19 @@ A project for the LVMH Hackathon at Albert School, aiming to transform the Digit
 
 Our vision is to transform the mandatory disclosure of the Digital Product Passport into a powerful lever for trust, prestige, and long-term client engagement for Louis Vuitton. We've created a comprehensive framework and strategic roadmap that integrates technical architecture with a premium user experience, turning regulatory mandates into brand opportunities.
 
-## 🎯 Core Concept: The DPP Emotion Funnel
+## 🎯 Core Concept: Emotional Encrage
 
-The user experience is designed around a four-stage emotional journey:
+The user experience is meticulously crafted around a four-stage emotional journey, designed not just to inform, but to deeply anchor the client's connection with the product and the Maison:
 
-1.  **Attraction:** Immersive product storytelling to capture emotional attention.
-2.  **Confidence:** A verifiable Certificate of Authenticity, anchored on the Aura Blockchain.
-3.  **Empowerment:** A lifelong care and longevity hub, with aftercare tutorials and service information.
-4.  **Serenity:** Transparent and compliant regulatory information.
+1.  **Attraction:** Immersive product storytelling, designed to capture immediate emotional attention through high-fidelity luxury references.
+2.  **Confidence:** Instant and verifiable proof of authenticity via the Aura Blockchain, transforming storytelling into "story-proving" and building profound trust.
+3.  **Empowerment:** A lifelong care and longevity hub, providing high-end maintenance tutorials and certified service directories, reinforcing product durability and deepening client relationship.
+4.  **Serenity:** Transparent and compliant regulatory information, positioned to signal excellence and transparency without disrupting the initial emotional spark.
 
-This funnel is designed to seamlessly transition the client from subconscious desire to conscious trust.
+This emotional journey is carefully planned to seamlessly transition the client from subconscious desire to conscious trust, fostering a lasting bond.
+
+### Personal Collection 
+After or beside this smooth flow, the user satisfaction is fullfill by a unique new feature, his own collection of high fidellity 3D autenticity certification cards. That create a strong fealing of exlusity, personalisation and desire to enrich the collection, fealing reenforced by the empty slots.
 
 ## 💡 The Key Differentiator: Invitation-Only Events
 
@@ -89,33 +92,37 @@ The project is built on a modern, robust, and scalable technical stack:
 -   **Blockchain:** Aura Blockchain for product authenticity
 -   **Authentication:** A simplified demo using localStorage
     
+## 🏗️ App Architecture
+
+The application is engineered for high scalability and responsiveness, built with a modular approach to seamlessly manage a diverse range of products. Its design emphasizes adaptability, allowing for the effortless integration of new product lines. To extend the product catalog, one simply needs to place the new product's assets into the `public/products` directory and update the product data within `lib/products.ts`. This architecture ensures the platform can readily evolve and accommodate Louis Vuitton's expanding portfolio.
+
 ## 📂 Project Structure   
 
 The repository is organized as follows:
 
 ```
-app/
-├── page.tsx                    # Redirects to /collection
-├── products/[slug]/page.tsx    # Dynamic DPP page for each product
-├── account-creation/           # Account creation form
-└── collection/                 # User's product collection dashboard
-
-components/
-├── page-dpp-section-[1-4].tsx  # The four sections of the DPP page
-├── feature-certificate-card-v3.tsx   # Interactive 3D certificate card
-├── feature-collection-grid.tsx       # Grid of products in the user's collection
-└── ...                         # Other reusable components
-
-contexts/
-└── user-context.tsx            # Manages user state and authentication
-
-lib/
-└── products.ts                 # Product data and helper functions
+.
+├── public/                       # Static assets served directly
+│   └── products/                 # Product-specific images (organized by slug)
+│       └── [product-slug]/       # Directory for each product's images (e.g., front.avif, side.avif)
+├── app/                          # Next.js App Router root
+│   ├── page.tsx                  # Root page, redirects to /collection
+│   ├── products/[slug]/page.tsx  # Dynamic route for individual Digital Product Passports
+│   ├── account-creation/page.tsx # User account creation/login form
+│   └── collection/page.tsx       # User's personalized product collection dashboard
+├── components/                   # Reusable UI components
+│   ├── page-dpp-section-[1-4].tsx  # Modular sections composing the DPP page
+│   ├── feature-certificate-card-v3.tsx   # Interactive 3D product certificate component
+│   ├── feature-collection-grid.tsx       # Displays user's product collection and empty slots
+│   └── ...                       # Other shared features and UI elements
+├── contexts/                     # React Context providers for global state
+│   └── user-context.tsx          # Manages user authentication and product ownership state
+├── lib/                          # Utility functions and data
+│   └── products.ts               # Product data definitions and access helpers (e.g., getProductBySlug)
+└── docs/                         # Project documentation and resources
+    ├── PROJECT_CONTEXT.md        # Comprehensive project overview
+    └── ...                       # Other documentation files
 ```
-
-## 🏗️ App Architecture 
-
-The app is desinged to be highly scalable and responsive, everything is "variable made" to allow any products to be added, we just have to drop images in the public/products folder and update the lib/produtcs.ts whith his informations.
 
 ## 🌐 Deployment
 
