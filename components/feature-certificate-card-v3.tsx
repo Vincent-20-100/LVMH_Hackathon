@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 // --- UTILITAIRES ---
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
-const product_image = getAssetPath("louis-vuitton-again--M25877_PM1_Side view.avif");
+const product_image = getAssetPath("SML-louis-vuitton-sac-again--M25877_PM1_Side_view.png");
 
 interface AuraCertificateCardProps {
   variant?: "dpp" | "collection";
@@ -103,7 +103,7 @@ export function AuraCertificateCard({ variant = "dpp" }: AuraCertificateCardProp
                   <img
                     src={product_image}
                     alt="Aura Logo"
-                    className="w-[240px] h-[240px] scale-150 object-cover z-1 opacity-90 filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
+                    className="w-[250px] h-auto object-contain z-1 opacity-90 filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
                   />
                 </div>
 
