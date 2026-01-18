@@ -46,8 +46,10 @@ export function AuraCertificateCard({ variant = "dpp", productId = "M25877" }: A
     return null;
   }
 
-  // Utiliser la première image ou le thumbnail pour l'affichage
-  const productImage = product.thumbnailPath || product.images[0]?.src;
+  // Définir l'image de la carte : "Side" par défaut, "Front" en fallback
+  const sideImage = product.images.find(img => img.view === 'Side');
+  const frontImage = product.images.find(img => img.view === 'Front');
+  const productImage = sideImage?.src || frontImage?.src || product.images[0]?.src;
 
   // Générer le code certificat une seule fois (ne change pas au re-render)
   const [certificateCode] = useState(() => generateCertificateCode(product.id));
@@ -92,7 +94,7 @@ export function AuraCertificateCard({ variant = "dpp", productId = "M25877" }: A
 
       {/* 2. LE CONTENEUR DE LA CARTE : Gère le changement d'état au survol */}
       <div
-        className="relative z-20"
+        className={cn("relative", isHovered ? "z-30" : "z-20")}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -133,7 +135,7 @@ export function AuraCertificateCard({ variant = "dpp", productId = "M25877" }: A
                   <img
                     src={getAssetPath(productImage)}
                     alt={product.name}
-                    className="w-[250px] h-auto object-contain z-1 opacity-90 filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
+                    className="w-[240px] h-[240px] scale-150 object-cover z-1 opacity-90 filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
                   />
                 </div>
 

@@ -115,7 +115,7 @@ export const CometCard = ({
         }}
         initial={{scale: isMobile ? 0.6 : 1, z: 0}}
         whileHover={{ 
-          scale: isMobile ? 1.1 : 1.5, 
+          scale: isMobile ? 1.1 : 1.4, 
           z: 50,
           transition: { duration: 0.3 }
         }}
