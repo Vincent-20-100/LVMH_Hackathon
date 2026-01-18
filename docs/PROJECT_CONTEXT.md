@@ -167,8 +167,11 @@ Le projet supporte maintenant plusieurs produits. Les données sont gérées dan
 - [ ] Sauvegarder les QR codes dans `/public/products/{slug}/qr-code.png`
 - [ ] Permet d'avoir un repo plus sérieux si fouillé (QR codes par produit)
 
-### 5. Bugs à Corriger
-- [ ] Fix le bouton "Retour au produit" qui ne fonctionne pas sur la page collection
+### 5. Bugs Critiques (Fixes en attente de test déploiement)
+- [ ] **BOUCLE INFINIE DÉPLOIEMENT:** ✅ Fixed `app/page.tsx` - redirige vers `/products/again` au lieu de `/collection` (À TESTER)
+- [ ] **localStorage SSG/SSR:** ✅ Ajout `typeof window !== 'undefined'` + try/catch pour éviter erreurs mode statique (À TESTER)
+- [ ] **Images produits cassées:** ✅ Fixed `getProductImagePath` dans `lib/products.ts` - ajout `BASE_PATH: '/LVMH_Hackathon'` (À TESTER)
+- [ ] **UX déploiement vs local:** Problèmes UX qui fonctionnent en local mais cassés en déploiement - À INVESTIGUER APRÈS TESTS
 
 ## 🔗 Références
 

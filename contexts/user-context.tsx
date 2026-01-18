@@ -36,11 +36,18 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Charger l'utilisateur depuis localStorage au montage
+  // Charger l'utilisateur depuis localStorage au montage (client-side only)
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    if (typeof window !== 'undefined') {
+      try {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+          setUser(JSON.parse(storedUser));
+        }
+      } catch (error) {
+        console.error("Error loading user from localStorage:", error);
+        localStorage.removeItem("user");
+      }
     }
     setIsLoading(false);
   }, []);
@@ -60,12 +67,16 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
     const fullUser: User = { ...userData, products: defaultProducts };
     setUser(fullUser);
-    localStorage.setItem("user", JSON.stringify(fullUser));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("user", JSON.stringify(fullUser));
+    }
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("user");
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem("user");
+    }
   };
 
   const addProduct = (productId: string, productName: string, productImage: string) => {
@@ -84,7 +95,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
     };
 
     setUser(updatedUser);
-    localStorage.setItem("user", JSON.stringify(updatedUser));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+    }
   };
 
   return (

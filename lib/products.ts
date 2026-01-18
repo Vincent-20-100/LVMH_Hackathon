@@ -38,8 +38,10 @@ export interface Product {
   
   // Helper pour les chemins d'images
   // Images organisées par slug dans /public/products/{slug}/
+  // Base path pour GitHub Pages deployment
+  const BASE_PATH = '/LVMH_Hackathon';
   const getProductImagePath = (slug: string, view: string) =>
-    `/products/${slug}/${view.toLowerCase()}.avif`;
+    `${BASE_PATH}/products/${slug}/${view.toLowerCase()}.avif`;
   
   // Helper pour créer un produit (évite de répéter id/name)
   const product = (data: {
