@@ -17,10 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # On définit le dossier de travail par défaut pour toutes les étapes
-    defaults:
-      run:
-        working-directory: ./DPP_web_page
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,9 +30,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          # On pointe manuellement vers le fichier lock dans le sous-dossier
           cache: 'pnpm'
-          cache-dependency-path: './DPP_web_page/pnpm-lock.yaml'
+          cache-dependency-path: './pnpm-lock.yaml'
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -50,8 +45,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # On précise bien le chemin du dossier 'out' généré
-          path: ./DPP_web_page/out
+          path: ./out
 
   deploy:
     environment:
