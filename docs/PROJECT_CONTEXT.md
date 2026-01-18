@@ -8,8 +8,8 @@
 
 ### Stack
 - **Frontend**: Next.js 16 + React 19 + TypeScript
-- **Styling**: TailwindCSS 4 + Framer Motion (animations 3D)
-- **UI Components**: Radix UI + shadcn/ui
+- **Styling**: TailwindCSS 4 + Motion (animations)
+- **UI Components**: Radix UI (dialog, separator, slot uniquement)
 - **Blockchain**: Aura Blockchain (pour authenticité)
 - **Auth**: localStorage (MVP/démo)
 
@@ -23,43 +23,56 @@ NFC Chip → Aura Blockchain → Database → DPP Page Dynamique
 ```
 app/
 ├── page.tsx                    # DPP Page (4 sections)
-├── account-creation/          # Formulaire création compte
-└── collection/                # 📌 Page Collection (dashboard user)
+├── account-creation/           # Formulaire création compte
+└── collection/                 # Page Collection (dashboard user)
 
 components/
-├── page-dpp-section-1.tsx     # Hero + Info produit + Carrousel
-├── page-dpp-section-2.tsx     # Carte Aura 3D + Traçabilité
-├── page-dpp-section-3.tsx     # Aftercare + Service Ledger
-├── page-dpp-section-4.tsx     # Section finale
-├── feature-certificate-card-v2.tsx  # Carte 3D interactive
-├── page-account-creation.tsx  # Form connecté au UserContext
-└── feature-*.tsx              # Composants réutilisables
+├── page-dpp-section-1.tsx      # Hero + Info produit + Carrousel
+├── page-dpp-section-2.tsx      # Carte Aura 3D + Traçabilité + Banner connexion
+├── page-dpp-section-3.tsx      # Aftercare + Service Ledger
+├── page-dpp-section-4.tsx      # Section finale
+├── feature-certificate-card-v2.tsx   # Carte 3D interactive (Motion)
+├── feature-connection-banner.tsx     # Banner de connexion (glassmorphism)
+├── feature-collection-grid.tsx       # Grille produits + emplacements vides
+├── feature-product-carousel.tsx      # Carrousel images produit
+├── feature-sticky-header.tsx         # Header personnalisable (left/right content)
+├── page-account-creation.tsx         # Formulaire connexion
+├── theme-provider.tsx                # Provider Next-themes
+└── ui/                               # Composants Radix (button, separator, dialog)
 
 contexts/
-└── user-context.tsx           # 📌 Gestion état utilisateur (localStorage)
+└── user-context.tsx            # Gestion état utilisateur (localStorage)
 
 docs/
-├── workflow-produit.md        # 📌 FLOW UTILISATEUR COMPLET
-├── PROJECT_CONTEXT.md         # Ce fichier
-└── LVMH_Alberthon_*.txt      # Présentation framework DPP
+├── PROJECT_CONTEXT.md          # Ce fichier
+├── workflow-produit.md         # Flow utilisateur détaillé
+└── LVMH_Alberthon_*.txt        # Présentation framework DPP
 ```
 
-## 🔄 Workflow Utilisateur (voir workflow-produit.md)
+## 🔄 Workflow Utilisateur
 
-### État Actuel
-- ✅ Gestion d'état utilisateur via `UserContext` (localStorage)
-- ✅ Page `/collection` créée et fonctionnelle avec grille de produits
-- ✅ Formulaire connecté au context → redirige vers `/collection`
-- ✅ Liste de produits ajoutée au `UserContext` avec données démo
-- ✅ Code carte déflouté pour les propriétaires (`feature-certificate-card-v2.tsx`)
-- ✅ Service Ledger masqué pour les non-propriétaires (`page-dpp-section-3.tsx`)
-- ✅ Header et page DPP personnalisés pour les utilisateurs connectés
+### Flow Implémenté
+1. **Visiteur anonyme** sur page DPP :
+   - Numéro de carte **flouté**
+   - Service Ledger **masqué**
+   - **Banner de connexion** affiché au-dessus de la carte
+   - Clic sur carte → `/account-creation`
 
-### Objectif Cible
-1. **Anonyme** → Carte floutée, Service Ledger masqué, popup engagement ✅
-2. **Connexion** → Form pré-rempli ✅, redirection vers Collection ✅
-3. **Collection** → Dashboard avec grille de produits (MVP) ✅
-4. **Propriétaire** → Carte défloutée, Service Ledger visible, personnalisation ✅
+2. **Connexion** :
+   - Formulaire pré-rempli (John Doe)
+   - Redirection vers `/collection`
+
+3. **Page Collection** :
+   - Header sticky avec "Retour au produit" + "Déconnexion"
+   - Titre personnalisé : "Bienvenue chez vous, [Nom]"
+   - Grille avec carte produit + emplacements vides (liens vers LV)
+   - Clic sur carte → retour page DPP
+
+4. **Utilisateur connecté** sur page DPP :
+   - Numéro de carte **visible**
+   - Service Ledger **visible**
+   - Banner de connexion **masqué**
+   - Clic sur carte → `/collection`
 
 ## 🎨 Produit Focus
 
@@ -73,46 +86,50 @@ docs/
 
 | Composant | Rôle | État |
 |-----------|------|------|
-| `contexts/user-context.tsx` | Gestion état user (localStorage) | ✅ Implémenté |
-| `app/collection/page.tsx` | Dashboard utilisateur | ✅ Grille de produits |
-| `page-account-creation.tsx` | Authentification | ✅ Connecté au context |
-| `feature-certificate-card-v2.tsx` | Carte Aura 3D avec code unique | ✅ Conditionné |
-| `page-dpp-section-3.tsx` | Service Ledger maintenance | ✅ Conditionné |
-| `feature-collection-grid.tsx`| Grille des produits de la collection | ✅ Implémenté (MVP) |
-| `feature-sticky-header.tsx` | Header personalisé | ✅ Implémenté |
+| `user-context.tsx` | Gestion état user + products (localStorage) | ✅ |
+| `feature-certificate-card-v2.tsx` | Carte 3D avec flou conditionnel + redirection | ✅ |
+| `feature-connection-banner.tsx` | Banner glassmorphism pour engagement | ✅ |
+| `feature-collection-grid.tsx` | Grille produits + slots vides cliquables | ✅ |
+| `feature-sticky-header.tsx` | Header avec props `leftContent`/`rightContent` | ✅ |
+| `feature-product-carousel.tsx` | Carrousel images produit | ✅ |
+| `page-dpp-section-2.tsx` | Assemblage carte + banner + traçabilité | ✅ |
+| `page-dpp-section-3.tsx` | Service Ledger conditionnel | ✅ |
 
-## 🚀 Prochaines Étapes
+## ✅ Fonctionnalités Complétées
 
-**Phase 1 (Terminée)**
-1. ~~Implémenter gestion d'état (localStorage)~~ ✅
-2. ~~Créer page Collection (/collection)~~ ✅
-3. ~~Ajouter liste de produits au context~~ ✅
-4. ~~Créer carrousel 3D de produits~~ ✅ (remplacé par une grille)
-5. ~~Conditionner affichage Service Ledger~~ ✅
-6. ~~Déflouter code carte pour propriétaires~~ ✅
-7. ~~Personnaliser header et carrousel sur page DPP~~ ✅
+- [x] Gestion d'état utilisateur via `UserContext` (localStorage)
+- [x] Page `/collection` avec grille de produits
+- [x] Emplacements vides cliquables vers louisvuitton.com
+- [x] Titre personnalisé sur page collection
+- [x] Header sticky réutilisable avec contenu personnalisable
+- [x] Code carte flouté si non connecté
+- [x] Service Ledger masqué si non connecté
+- [x] Banner de connexion glassmorphism
+- [x] Navigation carte ↔ collection ↔ connexion
+- [x] Bouton déconnexion fonctionnel
 
-**Backlog / Améliorations**
-- **Améliorer la Grille Collection :**
-  - Afficher plus de cartes placeholders.
-  - Améliorer le texte des placeholders.
-  - Rendre les placeholders plus sombres.
-- **Améliorer le Header de la Collection :**
-  - Réutiliser le `StickyHeader` de la page produit.
-  - Adapter les textes gauche/droite pour le contexte de la collection.
-- **Flux de Démonstration :**
-  - Vérifier que la carte est bien floutée avant connexion.
-  - Optionnel : Créer un mode "démo" où la connexion est perdue au rafraîchissement pour faciliter les présentations.
-- **Engagement Utilisateur :**
-  - Remplacer le CTA statique du Service Ledger par une pop-up (`Dialog`) apparaissant au-dessus de la carte 3D pour les utilisateurs non-connectés.
+## 🧹 Codebase (Audit du 18/01/2026)
 
+**Nettoyage effectué :**
+- 3 composants custom inutilisés supprimés
+- 52 composants UI shadcn supprimés (gardé: button, separator, dialog)
+- ~30 dépendances npm retirées
+- 13 images inutilisées supprimées
+
+**Dépendances actuelles (essentielles) :**
+- next, react, react-dom
+- motion (animations)
+- @radix-ui (dialog, separator, slot)
+- lucide-react (icônes)
+- tailwind-merge, class-variance-authority
+- next-themes
 
 ## 📝 Notes Importantes
 
 - **MVP/Démo** : Pas de vrai backend, simulation localStorage
 - **Données fictives** : John Doe pré-rempli pour démo rapide
-- **Sécurité actuelle** : Service Ledger accessible à tous (à corriger)
-- **Animations** : 3D avec Motion (CometCard), transitions fluides
+- **Déconnexion** : `localStorage.clear()` ou bouton sur page collection
+- **Animations** : Motion pour la carte 3D et transitions
 - **Responsive** : Mobile-first design
 
 ## 🔗 Références
