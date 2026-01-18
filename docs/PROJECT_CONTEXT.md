@@ -22,7 +22,8 @@ NFC Chip → Aura Blockchain → Database → DPP Page Dynamique
 
 ```
 app/
-├── page.tsx                    # DPP Page (4 sections)
+├── page.tsx                    # Redirige vers /collection
+├── products/[slug]/page.tsx    # Page DPP dynamique par produit
 ├── account-creation/           # Formulaire création compte
 └── collection/                 # Page Collection (dashboard user)
 
@@ -31,7 +32,7 @@ components/
 ├── page-dpp-section-2.tsx      # Carte Aura 3D + Traçabilité + Banner connexion
 ├── page-dpp-section-3.tsx      # Aftercare + Service Ledger
 ├── page-dpp-section-4.tsx      # Section finale
-├── feature-certificate-card-v2.tsx   # Carte 3D interactive (Motion)
+├── feature-certificate-card.tsx   # Carte 3D interactive (Motion)
 ├── feature-connection-banner.tsx     # Banner de connexion (glassmorphism)
 ├── feature-collection-grid.tsx       # Grille produits + emplacements vides
 ├── feature-product-carousel.tsx      # Carrousel images produit
@@ -43,6 +44,9 @@ components/
 contexts/
 └── user-context.tsx            # Gestion état utilisateur (localStorage)
 
+lib/
+└── products.ts                 # Données et fonctions pour les produits
+
 docs/
 ├── PROJECT_CONTEXT.md          # Ce fichier
 ├── workflow-produit.md         # Flow utilisateur détaillé
@@ -52,11 +56,9 @@ docs/
 ## 🔄 Workflow Utilisateur
 
 ### Flow Implémenté
-1. **Visiteur anonyme** sur page DPP :
-   - Numéro de carte **flouté**
-   - Service Ledger **masqué**
-   - **Banner de connexion** affiché au-dessus de la carte
-   - Clic sur carte → `/account-creation`
+1. **Visiteur anonyme** arrive sur le site :
+   - Redirection vers `/collection`
+   - Si non connecté, redirection vers la page de création de compte.
 
 2. **Connexion** :
    - Formulaire pré-rempli (John Doe)
@@ -65,38 +67,44 @@ docs/
 3. **Page Collection** :
    - Header sticky avec "Retour au produit" + "Déconnexion"
    - Titre personnalisé : "Bienvenue chez vous, [Nom]"
-   - Grille avec carte produit + emplacements vides (liens vers LV)
-   - Clic sur carte → retour page DPP
+   - Grille avec carte produit + emplacements vides
+   - Clic sur une carte produit → `/products/[slug]`
 
-4. **Utilisateur connecté** sur page DPP :
+4. **Utilisateur connecté** sur une page produit DPP :
    - Numéro de carte **visible**
    - Service Ledger **visible**
    - Banner de connexion **masqué**
    - Clic sur carte → `/collection`
 
-## 🎨 Produit Focus
+## 🎨 Produits
 
-**Louis Vuitton "Again Bag"** (M25877)
-- Cuir naturel traçable
-- Blockchain Aura certifié
-- Service Ledger d'entretien
-- Carte digitale de propriété 3D
+Le projet supporte maintenant plusieurs produits. Les données sont gérées dans `lib/products.ts`.
+
+- Louis Vuitton "Again Bag" (M25877)
+- Neverfull GM (M46978)
+- Zippy Wallet (M42616)
+- Sarah Wallet (M60531)
+- All In One MM (M25860)
+- Wallet On Chain LV Bloom (M14564)
 
 ## 🔑 Composants Clés
 
 | Composant | Rôle | État |
 |-----------|------|------|
 | `user-context.tsx` | Gestion état user + products (localStorage) | ✅ |
-| `feature-certificate-card-v2.tsx` | Carte 3D avec flou conditionnel + redirection | ✅ |
+| `feature-certificate-card.tsx` | Carte 3D avec flou conditionnel + redirection | ✅ |
 | `feature-connection-banner.tsx` | Banner glassmorphism pour engagement | ✅ |
 | `feature-collection-grid.tsx` | Grille produits + slots vides cliquables | ✅ |
 | `feature-sticky-header.tsx` | Header avec props `leftContent`/`rightContent` | ✅ |
 | `feature-product-carousel.tsx` | Carrousel images produit | ✅ |
 | `page-dpp-section-2.tsx` | Assemblage carte + banner + traçabilité | ✅ |
 | `page-dpp-section-3.tsx` | Service Ledger conditionnel | ✅ |
+| `products/[slug]/page.tsx` | Page produit dynamique | ✅ |
+
 
 ## ✅ Fonctionnalités Complétées
 
+- [x] Routing dynamique pour les pages produits
 - [x] Gestion d'état utilisateur via `UserContext` (localStorage)
 - [x] Page `/collection` avec grille de produits
 - [x] Emplacements vides cliquables vers louisvuitton.com
@@ -132,8 +140,37 @@ docs/
 - **Animations** : Motion pour la carte 3D et transitions
 - **Responsive** : Mobile-first design
 
+## 🚧 Points à Améliorer (Prochaine Session)
+
+### 1. Internationalisation et Traduction
+- [ ] Vérifier tous les textes en français
+- [ ] Traduire les éléments encore en anglais (UI, messages, labels)
+- [ ] Standardiser la langue de l'interface
+
+### 2. Fonctionnalité Transfert de Propriété
+- [ ] Ajouter un onglet/bouton "Transférer ma propriété" dans la page collection
+- [ ] Ajouter un onglet/bouton "Transférer ma propriété" dans la page produit DPP
+- [ ] Créer une page ou pop-up de transfert (modal Dialog)
+- [ ] Formulaire de transfert demandant l'email du destinataire
+- [ ] Simulation du processus de transfert (MVP/démo)
+
+### 3. Amélioration des Textes et UX
+- [ ] Améliorer les textes du bandeau sticky header ("Votre collection", etc.)
+- [ ] Réviser tous les textes générés par IA (sections DPP, descriptions)
+- [ ] Rendre les textes plus pertinents et alignés avec le ton Louis Vuitton
+- [ ] Améliorer le copywriting de la section Service Ledger
+- [ ] Réviser les textes de la page account-creation
+
+### 4. Script QR Code
+- [ ] Améliorer `python/QR-code_generator.py` pour intégrer une variable produit
+- [ ] Générer automatiquement un QR code pour chaque produit
+- [ ] Sauvegarder les QR codes dans `/public/products/{slug}/qr-code.png`
+- [ ] Permet d'avoir un repo plus sérieux si fouillé (QR codes par produit)
+
+### 5. Bugs à Corriger
+- [ ] Fix le bouton "Retour au produit" qui ne fonctionne pas sur la page collection
+
 ## 🔗 Références
 
-- Produit: [Again Bag M25877](https://fr.louisvuitton.com/fra-fr/produits/sac-again-monogram-nvprod6550038v/M25877)
 - Framework: `docs/LVMH_Alberthon_DDP-Framework_LAMY_MERET (1).txt`
 - Workflow détaillé: `docs/workflow-produit.md`

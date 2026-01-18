@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { getProductById } from "@/lib/products";
 
 // Types
 interface Product {
@@ -23,6 +24,7 @@ interface UserContextType {
   isLoading: boolean;
   login: (userData: Omit<User, 'products'>) => void;
   logout: () => void;
+  addProduct: (productId: string, productName: string, productImage: string) => void;
   products: Product[];
 }
 
@@ -34,28 +36,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Demo products data
-  const demoProducts: Product[] = [
-    {
-      id: "M25877",
-      name: "Again Bag",
-      image: "/louis-vuitton-sac-again--M25877_PM2_Front view.avif",
-      isOwner: true, // L'utilisateur est propriétaire de celui-ci pour la démo
-    },
-    {
-      id: "M45856",
-      name: "Capucines",
-      image: "/luxury-louis-vuitton-capucines-leather-handbag-bro.jpg",
-      isOwner: false,
-    },
-    {
-      id: "N41358",
-      name: "Neverfull",
-      image: "/B&W-louis-vuitton-sac-again--M25877_PM1_Side view.png",
-      isOwner: false,
-    },
-  ];
-
   // Charger l'utilisateur depuis localStorage au montage
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -65,8 +45,20 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setIsLoading(false);
   }, []);
 
-  const login = (userData: Omit<User, 'products'>) => {
-    const fullUser: User = { ...userData, products: demoProducts };
+  const login = (userData: Omit<User, "products">) => {
+    const againProduct = getProductById("M25877");
+    const defaultProducts: Product[] = [];
+
+    if (againProduct && againProduct.images.length > 0) {
+      defaultProducts.push({
+        id: againProduct.id,
+        name: againProduct.name,
+        image: againProduct.images[0].src,
+        isOwner: true,
+      });
+    }
+
+    const fullUser: User = { ...userData, products: defaultProducts };
     setUser(fullUser);
     localStorage.setItem("user", JSON.stringify(fullUser));
   };
@@ -74,6 +66,25 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
+  };
+
+  const addProduct = (productId: string, productName: string, productImage: string) => {
+    if (!user) return;
+
+    const newProduct: Product = {
+      id: productId,
+      name: productName,
+      image: productImage,
+      isOwner: true,
+    };
+
+    const updatedUser = {
+      ...user,
+      products: [...user.products, newProduct],
+    };
+
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
   };
 
   return (
@@ -84,6 +95,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         isLoading,
         login,
         logout,
+        addProduct,
         products: user?.products ?? [],
       }}
     >
