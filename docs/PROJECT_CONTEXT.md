@@ -116,13 +116,34 @@ Le projet supporte maintenant plusieurs produits. Les données sont gérées dan
 - [x] Navigation carte ↔ collection ↔ connexion
 - [x] Bouton déconnexion fonctionnel
 
-## 🧹 Codebase (Audit du 18/01/2026)
+## 🧹 Codebase - État Final (19/01/2026)
 
-**Nettoyage effectué :**
+### Nettoyage Phase 1 (18/01/2026)
 - 3 composants custom inutilisés supprimés
 - 52 composants UI shadcn supprimés (gardé: button, separator, dialog)
 - ~30 dépendances npm retirées
 - 13 images inutilisées supprimées
+
+### Nettoyage Phase 2 (19/01/2026)
+- ✅ `node_modules/` retiré du tracking git (gardé dans .gitignore)
+- ✅ Suppression anciennes versions: `feature-certificate-card-v2.tsx`, `comet-card.tsx`
+- ✅ Renommage `feature-certificate-card-v3.tsx` → `feature-certificate-card.tsx`
+- ✅ Tous les composants renommés en lowercase pour cohérence
+- ✅ 3 images produits inutilisées supprimées (anciennes versions, capucines)
+- ✅ Mise à jour imports et documentation
+
+### Merges & Déploiement
+- ✅ Merge `dev_vincent_phase_2` → `dev_vincent` (reset --hard, historique préservé)
+- ✅ Fix workflow GitHub Actions (chemins racine au lieu de `DPP_web_page/`)
+- ✅ Merge `dev_vincent` → `main` (conflit renommage résolu)
+- ✅ Fixes critiques déploiement testés et validés
+
+### Fixes Déploiement (19/01/2026)
+- ✅ Boucle infinie: `app/page.tsx` redirige vers `/products/again`
+- ✅ localStorage SSG: Protections `typeof window !== 'undefined'` + try/catch
+- ✅ Images cassées: Retiré double BASE_PATH (Next.js l'ajoute automatiquement)
+- ✅ Zoom carte: Réduit de 1.5 → 1.4 pour meilleur UX
+- ✅ Marges grille: Ajouté `px-8` pour éviter cartes hors viewport
 
 **Dépendances actuelles (essentielles) :**
 - next, react, react-dom
@@ -167,12 +188,12 @@ Le projet supporte maintenant plusieurs produits. Les données sont gérées dan
 - [ ] Sauvegarder les QR codes dans `/public/products/{slug}/qr-code.png`
 - [ ] Permet d'avoir un repo plus sérieux si fouillé (QR codes par produit)
 
-### 5. Bugs Critiques - Fixes Déploiement (À TESTER)
-- [ ] **BOUCLE INFINIE:** ✅ `app/page.tsx` redirige `/products/again` au lieu de `/collection`
-- [ ] **localStorage SSG:** ✅ Protections `typeof window !== 'undefined'` + try/catch dans `user-context.tsx`
-- [ ] **Images cassées:** ✅ Retiré double BASE_PATH - Next.js l'ajoute auto via `next.config.mjs` ligne 4
-- [ ] **Zoom carte trop fort:** ✅ Scale réduit 1.5 → 1.4 dans `feature-certificate-card.tsx:270`
-- [ ] **Cartes hors viewport:** ✅ Ajouté `px-8` à la grille pour marge latérale (`feature-collection-grid.tsx:39`)
+### 5. Bugs Critiques - ✅ RÉSOLUS ET TESTÉS (19/01/2026)
+- [x] **BOUCLE INFINIE:** `app/page.tsx` redirige `/products/again` au lieu de `/collection` ✅ VALIDÉ
+- [x] **localStorage SSG:** Protections `typeof window !== 'undefined'` + try/catch dans `user-context.tsx` ✅ VALIDÉ
+- [x] **Images cassées:** Retiré double BASE_PATH - Next.js l'ajoute auto via `next.config.mjs` ligne 4 ✅ VALIDÉ
+- [x] **Zoom carte trop fort:** Scale réduit 1.5 → 1.4 dans `feature-certificate-card.tsx:270` ✅ VALIDÉ
+- [x] **Cartes hors viewport:** Ajouté `px-8` à la grille pour marge latérale (`feature-collection-grid.tsx:39`) ✅ VALIDÉ
 
 ## 🔗 Références
 
