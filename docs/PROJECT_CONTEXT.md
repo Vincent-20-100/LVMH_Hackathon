@@ -167,11 +167,12 @@ Le projet supporte maintenant plusieurs produits. Les données sont gérées dan
 - [ ] Sauvegarder les QR codes dans `/public/products/{slug}/qr-code.png`
 - [ ] Permet d'avoir un repo plus sérieux si fouillé (QR codes par produit)
 
-### 5. Bugs Critiques (Fixes en attente de test déploiement)
-- [ ] **BOUCLE INFINIE DÉPLOIEMENT:** ✅ Fixed `app/page.tsx` - redirige vers `/products/again` au lieu de `/collection` (À TESTER)
-- [ ] **localStorage SSG/SSR:** ✅ Ajout `typeof window !== 'undefined'` + try/catch pour éviter erreurs mode statique (À TESTER)
-- [ ] **Images produits cassées:** ✅ Fixed `getProductImagePath` dans `lib/products.ts` - ajout `BASE_PATH: '/LVMH_Hackathon'` (À TESTER)
-- [ ] **UX déploiement vs local:** Problèmes UX qui fonctionnent en local mais cassés en déploiement - À INVESTIGUER APRÈS TESTS
+### 5. Bugs Critiques - Fixes Déploiement (À TESTER)
+- [ ] **BOUCLE INFINIE:** ✅ `app/page.tsx` redirige `/products/again` au lieu de `/collection`
+- [ ] **localStorage SSG:** ✅ Protections `typeof window !== 'undefined'` + try/catch dans `user-context.tsx`
+- [ ] **Images cassées:** ✅ Retiré double BASE_PATH - Next.js l'ajoute auto via `next.config.mjs` ligne 4
+- [ ] **Zoom carte trop fort:** ✅ Scale réduit 1.5 → 1.4 dans `feature-certificate-card.tsx:270`
+- [ ] **Cartes hors viewport:** ✅ Ajouté `px-8` à la grille pour marge latérale (`feature-collection-grid.tsx:39`)
 
 ## 🔗 Références
 

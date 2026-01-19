@@ -38,10 +38,9 @@ export interface Product {
   
   // Helper pour les chemins d'images
   // Images organisées par slug dans /public/products/{slug}/
-  // Base path pour GitHub Pages deployment
-  const BASE_PATH = '/LVMH_Hackathon';
+  // Note: basePath (/LVMH_Hackathon) est automatiquement ajouté par Next.js (voir next.config.mjs)
   const getProductImagePath = (slug: string, view: string) =>
-    `${BASE_PATH}/products/${slug}/${view.toLowerCase()}.avif`;
+    `/products/${slug}/${view.toLowerCase()}.avif`;
   
   // Helper pour créer un produit (évite de répéter id/name)
   const product = (data: {

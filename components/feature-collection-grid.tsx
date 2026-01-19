@@ -36,7 +36,7 @@ export function FeatureCollectionGrid({ showTitle = true }: FeatureCollectionGri
     <>
       <div className="flex flex-col items-center">
         {/* Grille de produits */}
-        <div className="flex flex-wrap items-center justify-center py-10 gap-6 lg:gap-10 max-w-[1600px]">
+        <div className="flex flex-wrap items-center justify-center py-10 px-8 gap-6 lg:gap-10 max-w-[1600px]">
           {/* Afficher les produits possédés */}
           {products.map((product) => (
             <AuraCertificateCard
