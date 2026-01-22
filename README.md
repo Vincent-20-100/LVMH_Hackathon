@@ -75,7 +75,7 @@ graph TD
     
 ## 🏗️ App Architecture
 
-The application is engineered for high scalability and responsiveness, built with a modular approach to seamlessly manage a diverse range of products. Its design emphasizes adaptability, allowing for the effortless integration of new product lines. To extend the product catalog, one simply needs to place the new product's assets into the `public/products` directory and update the product data within `lib/products.ts`. This architecture ensures the platform can readily evolve and accommodate Louis Vuitton's expanding portfolio.
+The application is engineered for high scalability and responsiveness, built with a modular approach to seamlessly manage a diverse range of products. Its design emphasizes adaptability, allowing for the effortless integration of new product lines. To extend the product catalog, one simply needs to place the new product's assets into the `public/products` directory and update the product data within `lib/products.ts`.
 
 ## 📂 Project Structure   
 
@@ -131,8 +131,41 @@ The project is built on a modern, robust, and scalable technical stack:
 -   **Blockchain:** Aura Blockchain for product authenticity
 -   **Authentication:** A simplified demo using localStorage
 
+## 🏃 Running Locally
+
+To run this project on your local machine, follow these steps:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/vincent-20-100/LVMH_Hackathon.git
+    cd LVMH_Hackathon
+    ```
+
+2.  **Install dependencies:**
+    This project uses `npm` for package management.
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server:**
+    This command starts the application in development mode.
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000/LVMH_Hackathon](http://localhost:3000/LVMH_Hackathon) with your browser to see the result.
+
+4.  **Build for production:**
+    To create a production-ready build, run:
+    ```bash
+    npm run build
+    ```
+    And to start the production server:
+    ```bash
+    npm run start
+    ```
+
 ## 🌐 Deployment
 
-This project is designed for seamless deployment as a static site on **GitHub Pages**. This serverless approach was chosen for its high performance, enhanced security, and cost-effectiveness, making it an ideal solution for a robust proof-of-concept. The repository can be cloned and the `out` directory can be served statically without any complex installation.
+This project is designed for seamless deployment as a static site on **GitHub Pages**. This serverless approach was chosen for its high performance and cost-effectiveness, making it an ideal solution for a proof-of-concept. The repository can be cloned and the directory can be served statically without any complex installation.
 
 [---> ACCESS TO THE DEPLOYED WEBSITE HERE <---](https://vincent-20-100.github.io/LVMH_Hackathon/)
