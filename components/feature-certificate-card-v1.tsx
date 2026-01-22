@@ -10,13 +10,13 @@ import {
 } from "motion/react";
 import { cn } from "@/lib/utils";
 
-// --- UTILITAIRES ---
+// --- UTILITIES ---
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
 const LV_URL = "https://account.louisvuitton.com/eng-us/mylv/registration/";
 
 export function AuraCertificateCard() {
-  const [isHovered, setIsHovered] = useState(false); // État pour le flou
+  const [isHovered, setIsHovered] = useState(false); // State for blur
   
   const handleRedirect = () => {
     window.open(LV_URL, '_blank', 'noopener,noreferrer');
@@ -27,7 +27,7 @@ export function AuraCertificateCard() {
   return (
     <div className="bg-white flex flex-col items-center p-2 relative">
       
-      {/* 1. LE FLOU DE FOND : S'anime sur toute la page quand isHovered est vrai */}
+      {/* 1. BACKGROUND BLUR: Animates across the page when isHovered is true */}
         { !isMobile && (
         <motion.div 
           className="fixed inset-0 z-10 pointer-events-none backdrop-blur-[4px] bg-black/25"
@@ -36,7 +36,7 @@ export function AuraCertificateCard() {
           transition={{ duration: 0.4 }}
       />
       )}
-      {/* 2. LE CONTENEUR DE LA CARTE : Gère le changement d'état au survol */}
+      {/* 2. CARD CONTAINER: Handles state change on hover */}
       <div 
         className="relative z-20" 
         onMouseEnter={() => setIsHovered(true)} 
@@ -180,7 +180,7 @@ const CometCard = ({
     const tX = (touch.clientX - rect.left) / rect.width - 0.5;
     const tY = (touch.clientY - rect.top) / rect.height - 0.5;
     
-    // Limitation pour rester dans les bornes de tes calculs
+    // Limit to stay within calculation bounds
     if (tX >= -0.5 && tX <= 0.5 && tY >= -0.5 && tY <= 0.5) {
       x.set(tX);
       y.set(tY);
@@ -196,8 +196,8 @@ const CometCard = ({
         className="relative rounded-[16px] bg-transparent"
         onMouseMove={handleMouseMove}
         onMouseLeave={reset}
-        onTouchMove={handleTouchMove} // Active le mouvement au doigt
-        onTouchEnd={reset}           // Remet à zéro quand on lâche
+        onTouchMove={handleTouchMove} // Enables finger movement
+        onTouchEnd={reset}           // Resets when released
         style={{ 
           rotateX, rotateY, translateX, translateY,
           transformStyle: "preserve-3d",

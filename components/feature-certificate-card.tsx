@@ -13,10 +13,10 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { getProductById } from "@/lib/products";
 
-// --- UTILITAIRES ---
+// --- UTILITIES ---
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
-// Génère un code certificat aléatoire basé sur le pattern: ID-XX999-XX999
+// Generates a random certificate code based on the pattern: ID-XX999-XX999
 const generateCertificateCode = (productId: string): string => {
   const randomLetters = () => {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -25,7 +25,7 @@ const generateCertificateCode = (productId: string): string => {
   };
 
   const randomNumbers = () => {
-    return Math.floor(100 + Math.random() * 900).toString(); // 3 chiffres entre 100-999
+    return Math.floor(100 + Math.random() * 900).toString(); // 3 digits between 100-999
   };
 
   return `${productId}-${randomLetters()}${randomNumbers()}-${randomLetters()}${randomNumbers()}`;
@@ -33,32 +33,32 @@ const generateCertificateCode = (productId: string): string => {
 
 interface AuraCertificateCardProps {
   variant?: "dpp" | "collection";
-  productId?: string; // ID du produit à afficher (par défaut M25877)
+  productId?: string; // Product ID to display (default M25877)
 }
 
 export function AuraCertificateCard({ variant = "dpp", productId = "M25877" }: AuraCertificateCardProps) {
-  // Récupérer les données du produit
+  // Get product data
   const product = getProductById(productId);
 
-  // Fallback si le produit n'existe pas
+  // Fallback if product doesn't exist
   if (!product) {
     console.error(`Product with ID ${productId} not found`);
     return null;
   }
 
-  // Définir l'image de la carte : "Side" par défaut, "Front" en fallback
+  // Set card image: "Side" by default, "Front" as fallback
   const sideImage = product.images.find(img => img.view === 'Side');
   const frontImage = product.images.find(img => img.view === 'Front');
   const productImage = sideImage?.src || frontImage?.src || product.images[0]?.src;
 
-  // Générer le code certificat une seule fois (ne change pas au re-render)
+  // Generate certificate code once (doesn't change on re-render)
   const [certificateCode] = useState(() => generateCertificateCode(product.id));
 
   const [isHovered, setIsHovered] = useState(false);
   const { isConnected } = useUser();
   const router = useRouter();
 
-  // Le numéro est flouté si l'utilisateur n'est pas connecté
+  // Number is blurred if user is not connected
   const isBlurred = !isConnected;
 
   const handleRedirect = () => {
@@ -67,12 +67,12 @@ export function AuraCertificateCard({ variant = "dpp", productId = "M25877" }: A
         router.push(`/products/${product.slug}`);
       }
     } else {
-      // Depuis la page DPP
+      // From DPP page
       if (isConnected) {
-        // Connecté → aller vers la collection
+        // Connected → go to collection
         router.push("/collection");
       } else {
-        // Non connecté → aller vers la page de connexion
+        // Not connected → go to login page
         router.push("/account-creation");
       }
     }
@@ -83,7 +83,7 @@ export function AuraCertificateCard({ variant = "dpp", productId = "M25877" }: A
   return (
     <div className="bg-white flex flex-col items-center p-2 relative">
 
-      {/* 1. LE FLOU DE FOND : S'anime sur toute la page quand isHovered est vrai */}
+      {/* 1. BACKGROUND BLUR: Animates across the page when isHovered is true */}
       {!isMobile && (
         <motion.div
           className="fixed inset-0 z-10 pointer-events-none backdrop-blur-[4px] bg-black/25"
@@ -93,7 +93,7 @@ export function AuraCertificateCard({ variant = "dpp", productId = "M25877" }: A
         />
       )}
 
-      {/* 2. LE CONTENEUR DE LA CARTE : Gère le changement d'état au survol */}
+      {/* 2. CARD CONTAINER: Handles state change on hover */}
       <div
         className={cn("relative", isHovered ? "z-30" : "z-20")}
         onMouseEnter={() => setIsHovered(true)}
@@ -242,7 +242,7 @@ const CometCard = ({
     const tX = (touch.clientX - rect.left) / rect.width - 0.5;
     const tY = (touch.clientY - rect.top) / rect.height - 0.5;
     
-    // Limitation pour rester dans les bornes de tes calculs
+    // Limit to stay within calculation bounds
     if (tX >= -0.5 && tX <= 0.5 && tY >= -0.5 && tY <= 0.5) {
       x.set(tX);
       y.set(tY);
@@ -258,8 +258,8 @@ const CometCard = ({
         className="relative rounded-[16px] bg-transparent"
         onMouseMove={handleMouseMove}
         onMouseLeave={reset}
-        onTouchMove={handleTouchMove} // Active le mouvement au doigt
-        onTouchEnd={reset}           // Remet à zéro quand on lâche
+        onTouchMove={handleTouchMove} // Enables finger movement
+        onTouchEnd={reset}           // Resets when released
         style={{ 
           rotateX, rotateY, translateX, translateY,
           transformStyle: "preserve-3d",

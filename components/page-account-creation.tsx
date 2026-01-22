@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation"
 import { useUser } from "@/contexts/user-context"
 
 
-// --- PAGE PRINCIPALE ---
+// --- MAIN PAGE ---
 export default function AccountCreation() {
   const router = useRouter()
   const { login } = useUser()
@@ -31,7 +31,7 @@ export default function AccountCreation() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Sauvegarder l'utilisateur dans le context
+    // Save user in context
     login({
       firstName: formData.firstName,
       lastName: formData.lastName,

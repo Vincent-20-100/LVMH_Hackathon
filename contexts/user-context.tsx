@@ -36,7 +36,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Charger l'utilisateur depuis localStorage au montage (client-side only)
+  // Load user from localStorage on mount (client-side only)
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {

@@ -13,18 +13,18 @@ export default function CollectionPage() {
   const router = useRouter();
   const fullName = user ? `${user.firstName} ${user.lastName}` : "";
 
-  // Rediriger vers l'accueil si non connecté (après chargement)
+  // Redirect to home if not connected (after loading)
   useEffect(() => {
     if (!isLoading && !isConnected) {
       router.push("/");
     }
   }, [isConnected, isLoading, router]);
 
-  // Afficher un état de chargement
+  // Show loading state
   if (isLoading || !isConnected) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-400">Chargement...</p>
+        <p className="text-gray-400">Loading...</p>
       </div>
     );
   }
@@ -36,39 +36,39 @@ export default function CollectionPage() {
         leftContent={
           <Link
             href="/"
-            className="hidden md:flex items-center gap-2 text-xs tracking-[0.3em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+            className="hidden md:flex items-center gap-2 text-md tracking-[0.3em] uppercase text-muted-foreground hover:text-foreground transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Retour au produit</span>
+            <ArrowLeft className=" w-4 h-4" />
+            <span>Back to product</span>
           </Link>
         }
         rightContent={
           <button
             onClick={logout}
-            className="flex items-center gap-2 text-xs tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors"
+            className="flex items-center gap-2 text-md tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors"
           >
             <LogOut className="w-4 h-4" />
-            <span>Déconnexion</span>
+            <span>Log out</span>
           </button>
         }
       />
 
-      {/* Section Titre & Accroche */}
+      {/* Title & Tagline Section */}
       {fullName && (
         <div className="text-center pt-32 pb-8">
-          {/* L'accueil personnalisé */}
-          <h2 className="text-2xl py-4 md:text-2xl lg:text-4xl font-light italic tracking-tight text-gray-900 mb-4">
-            Bienvenue chez vous, {fullName}.
+          {/* Personalized welcome */}
+          <h2 className="text-2xl py-4 md:text-2xl lg:text-4xl font-light tracking-tight text-gray-900 mb-4">
+            Welcome home, {fullName}.
           </h2>
           
-          {/* L'accroche émotionnelle */}
-          <h3 className="text-l md:text-xl lg:text-2xl italic ">
-            Chaque pièce est une histoire, voici la vôtre.
+          {/* Emotional tagline */}
+          <h3 className="text-l md:text-xl lg:text-2xl ">
+            Every piece tells a story, here is yours.
           </h3>
         </div>
       )}
 
-      {/* Contenu principal - Grille de produits */}
+      {/* Main Content - Product Grid */}
       <section className="max-w-full mx-auto px-6 pb-12">
         <FeatureCollectionGrid />
       </section>

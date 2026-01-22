@@ -11,7 +11,7 @@ export function ConnectionBanner() {
   const { isConnected } = useUser();
   const router = useRouter();
 
-  // Ne pas afficher si connecté ou fermé
+  // Do not display if connected or dismissed
   if (isConnected || isDismissed) return null;
 
   const handleConnect = () => {
@@ -28,7 +28,7 @@ export function ConnectionBanner() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          {/* Bandeau Glass - Pleine largeur avec dégradé transparent sur les bords */}
+          {/* Glass Banner - Full width with transparent gradient on the edges */}
           <div
             className="w-full pointer-events-auto"
             style={{
@@ -39,28 +39,28 @@ export function ConnectionBanner() {
           >
             <div className="relative max-w-2xl mx-auto px-8 py-10 md:py-14 text-center">
 
-              {/* Bouton Fermer */}
+              {/* Close Button */}
               <button
                 onClick={() => setIsDismissed(true)}
                 className="absolute top-4 right-4 p-1.5 text-neutral-500 hover:text-neutral-800 transition-colors"
-                aria-label="Fermer"
+                aria-label="Close"
               >
                 <X className="w-6 h-6 stroke-[1.5px]" />
               </button>
 
-              {/* Contenu */}
+              {/* Content */}
               <h3 className="text-2xl md:text-4xl font-light tracking-[0.1em] text-neutral-800 uppercase mb-4">
-                Débloquez votre Certificat
+                Unlock Your Certificate
               </h3>
               <p className="text-sm md:text-base text-neutral-600 font-light tracking-wide mb-8">
-                Votre collection, votre histoire.
+                Your collection, your story.
               </p>
 
               <button
                 onClick={handleConnect}
                 className="px-10 py-3 bg-black text-white text-[11px] md:text-xs tracking-[0.4em] uppercase hover:bg-neutral-800 transition-all duration-300"
               >
-                Se connecter
+                Connect to Your Account
               </button>
             </div>
           </div>

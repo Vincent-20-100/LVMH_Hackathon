@@ -13,10 +13,10 @@ const EmptySlot = ({ onClick }: { onClick: () => void }) => (
   >
     <Plus className="w-12 h-12 text-neutral-400 group-hover:text-neutral-500 mb-4 transition-colors" />
     <p className="text-neutral-500 group-hover:text-neutral-600 text-sm md:text-base transition-colors">
-      Agrandir ma collection
+      Expand my collection
     </p>
     <p className="text-neutral-400 text-xs mt-2">
-      Ajouter une pièce
+      Add a piece
     </p>
   </button>
 );
@@ -29,15 +29,15 @@ export function FeatureCollectionGrid({ showTitle = true }: FeatureCollectionGri
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { products } = useUser();
 
-  const totalSlots = 12; // Total d'emplacements dans la grille
-  const emptySlots = totalSlots - products.length; // Nombre d'emplacements vides
+  const totalSlots = 12; // Total slots in the grid
+  const emptySlots = totalSlots - products.length; // Number of empty slots
 
   return (
     <>
       <div className="flex flex-col items-center">
-        {/* Grille de produits */}
+        {/* Product grid */}
         <div className="flex flex-wrap items-center justify-center py-10 px-8 gap-6 lg:gap-10 max-w-[1600px]">
-          {/* Afficher les produits possédés */}
+          {/* Display owned products */}
           {products.map((product) => (
             <AuraCertificateCard
               key={product.id}
@@ -46,14 +46,14 @@ export function FeatureCollectionGrid({ showTitle = true }: FeatureCollectionGri
             />
           ))}
 
-          {/* Afficher les emplacements vides */}
+          {/* Display empty slots */}
           {Array.from({ length: emptySlots }).map((_, i) => (
             <EmptySlot key={`empty-${i}`} onClick={() => setIsModalOpen(true)} />
           ))}
         </div>
       </div>
 
-      {/* Modal d'ajout de produit */}
+      {/* Add product modal */}
       <AddProductModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );

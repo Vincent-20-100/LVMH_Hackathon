@@ -188,7 +188,7 @@ export function PageDPPSection4() {
       {/* DPP ID */}
       <div className="mt-12 text-center">
         <p className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground/60">
-          DPP ID: LV-DPP-2024-M48864-FR-001
+          DPP ID: LV-DPP-2026-M48864-FR-001
         </p>
       </div>
     </footer>

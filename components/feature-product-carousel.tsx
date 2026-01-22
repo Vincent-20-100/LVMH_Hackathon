@@ -13,7 +13,7 @@ export default function ProductCarousel({ images }: ProductCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Met à jour l'index des points quand on scroll au doigt
+  // Updates dot index when scrolling with finger
   const handleScroll = () => {
     if (!scrollRef.current) return;
     const width = scrollRef.current.offsetWidth;
@@ -53,7 +53,7 @@ export default function ProductCarousel({ images }: ProductCarouselProps) {
   return (
     <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl aspect-square mx-auto group">
       
-      {/* Container de Scroll Horizontal (Gère le tactile et le glissé) */}
+      {/* Horizontal Scroll Container (Handles touch and swipe) */}
       <div
         ref={scrollRef}
         onScroll={handleScroll}
@@ -71,7 +71,7 @@ export default function ProductCarousel({ images }: ProductCarouselProps) {
         ))}
       </div>
 
-      {/* Navigation Arrows - Cachées sur petit mobile pour laisser la place au geste */}
+      {/* Navigation Arrows - Hidden on small mobile to leave room for gestures */}
       <button
         onClick={goToPrevious}
         className="absolute left-0 md:left-2 top-1/2 -translate-y-1/2 w-12 h-24 hidden sm:flex items-center justify-center text-black/20 hover:text-black/70 text-4xl transition-all z-10"

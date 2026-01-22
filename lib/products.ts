@@ -7,42 +7,42 @@ export interface ProductImage {
 
 
 export interface Product {
-  // Identifiants
-  id: string;                    // SKU (ex: "M25877")
-  slug: string;                 // URL-friendly (ex: "again-bag")
+  // Identifiers
+  id: string;                    // SKU (e.g., "M25877")
+  slug: string;                 // URL-friendly (e.g., "again-bag")
 
-  // Infos de base
+  // Basic info
   name: string;                  // "Again Bag"
-  link?: string;                // URL vers le site LV
+  link?: string;                // URL to LV website
   category: string;             // "Leather Goods"
   model?: string;               // "Monogram"
   size?: string;               // "45 x 33 x 13 cm"
-  price?: number;            // Optionnel pour démo
+  price?: number;            // Optional for demo
 
   // Description
-  shortDescription?: string;     // 1-2 phrases
-  description: string;          // Paragraphe complet
-  details?: string[];          // Détails techniques
-  fits?: string[];            // Ce que le produit peut contenir
-  sustainability?: string;   // Infos durabilité
-  productCare?: string;     // Conseils d'entretien
+  shortDescription?: string;     // 1-2 sentences
+  description: string;          // Full paragraph
+  details?: string[];          // Technical details
+  fits?: string[];            // What the product can hold
+  sustainability?: string;   // Sustainability info
+  productCare?: string;     // Care instructions
 
 
-  // Médias
-    images: ProductImage[];
-  
-    // Métadonnées
-    createdAt: string;
-    updatedAt: string;
-  }
-  
-  // Helper pour les chemins d'images
-  // Images organisées par slug dans /public/products/{slug}/
-  // Note: basePath (/LVMH_Hackathon) est automatiquement ajouté par Next.js (voir next.config.mjs)
-  const getProductImagePath = (slug: string, view: string) =>
-    `/products/${slug}/${view.toLowerCase()}.avif`;
-  
-  // Helper pour créer un produit (évite de répéter id/name)
+  // Media
+  images: ProductImage[];
+
+  // Metadata
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Helper for image paths
+// Images organized by slug in /public/products/{slug}/
+// Note: basePath (/LVMH_Hackathon) is automatically added by Next.js (see next.config.mjs)
+const getProductImagePath = (slug: string, view: string) =>
+  `/products/${slug}/${view.toLowerCase()}.avif`;
+
+// Helper to create a product (avoids repeating id/name)
   const product = (data: {
     id: string;
     name: string;
@@ -76,7 +76,7 @@ export interface Product {
       updatedAt: '2026-01-18',
     };
 
-  // Ajouter les propriétés optionnelles si elles existent
+  // Add optional properties if they exist
   if (data.model !== undefined) baseProduct.model = data.model;
   if (data.size !== undefined) baseProduct.size = data.size;
   if (data.price !== undefined) baseProduct.price = data.price;
@@ -89,7 +89,7 @@ export interface Product {
   return baseProduct;
 };
 
-// Données produits
+// Product data
 export const products: Record<string, Product> = {
   'M25877': product({
     id: 'M25877',
@@ -263,7 +263,7 @@ export const products: Record<string, Product> = {
     productCare: '',
   }),
 
-  // Ajouter d'autres produits ici...
+  // Add more products here...
 };
 
 // Helpers

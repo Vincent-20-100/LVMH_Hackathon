@@ -44,7 +44,7 @@ export function StickyHeader({ leftContent, rightContent }: StickyHeaderProps = 
         {leftContent !== undefined ? (
           leftContent
         ) : (
-          <span className="hidden md:block text-xs tracking-[0.3em] uppercase text-muted-foreground">
+          <span className="hidden md:block text-md tracking-[0.3em] uppercase text-muted-foreground">
             Digital Product Passport
           </span>
         )}
@@ -61,7 +61,7 @@ export function StickyHeader({ leftContent, rightContent }: StickyHeaderProps = 
           </div>
           
           {/* Sous-titre : Uniquement mobile */}
-          <span className="block md:hidden text-[10px] tracking-[0.2em] uppercase text-muted-foreground mt-1">
+          <span className="block md:hidden text-md tracking-[0.2em] uppercase text-muted-foreground mt-1">
             Digital Product Passport
           </span>
         </a>
@@ -73,12 +73,12 @@ export function StickyHeader({ leftContent, rightContent }: StickyHeaderProps = 
           ) : (
             <>
               {isConnected && user ? (
-                <Link href="/collection" className="flex items-center gap-2 text-xs tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors">
+                <Link href="/collection" className="flex items-center gap-2 text-md tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors">
                   <User className="w-4 h-4" />
-                  <span>Welcome, {user.firstName}</span>
+                  <span>{user.firstName}'s personal collection</span>
                 </Link>
               ) : (
-                <Link href="/account-creation" className="flex items-center gap-2 text-xs tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors">
+                <Link href="/account-creation" className="flex items-center gap-2 text-md tracking-wide uppercase text-muted-foreground hover:text-foreground transition-colors">
                   <LogIn className="w-4 h-4" />
                   <span>Login</span>
                 </Link>
