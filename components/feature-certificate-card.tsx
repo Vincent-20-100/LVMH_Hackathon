@@ -16,19 +16,23 @@ import { getProductById } from "@/lib/products";
 // --- UTILITIES ---
 const getAssetPath = (path: string) => `/LVMH_Hackathon/${path.startsWith('/') ? path.slice(1) : path}`;
 
-// Generates a random certificate code based on the pattern: ID-XX999-XX999
+// Generates a deterministic certificate code based on productId (consistent across renders)
 const generateCertificateCode = (productId: string): string => {
-  const randomLetters = () => {
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    return letters[Math.floor(Math.random() * letters.length)] +
-           letters[Math.floor(Math.random() * letters.length)];
+  // Use productId as seed for consistent code generation
+  const seed = productId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  const getLetters = (offset: number) => {
+    const idx1 = (seed + offset) % 26;
+    const idx2 = (seed + offset + 7) % 26;
+    return letters[idx1] + letters[idx2];
   };
 
-  const randomNumbers = () => {
-    return Math.floor(100 + Math.random() * 900).toString(); // 3 digits between 100-999
+  const getNumbers = (offset: number) => {
+    return (100 + ((seed * (offset + 1)) % 900)).toString();
   };
 
-  return `${productId}-${randomLetters()}${randomNumbers()}-${randomLetters()}${randomNumbers()}`;
+  return `${productId}-${getLetters(0)}${getNumbers(1)}-${getLetters(13)}${getNumbers(2)}`;
 };
 
 interface AuraCertificateCardProps {

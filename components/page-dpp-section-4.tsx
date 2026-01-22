@@ -5,6 +5,25 @@ import type React from "react"
 import { useState } from "react"
 import { ChevronDown, Leaf, FileText, Scale } from "lucide-react"
 
+// Generates a deterministic certificate code based on productId (same as card)
+const generateCertificateCode = (productId: string): string => {
+  // Use productId as seed for consistent code generation
+  const seed = productId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  const getLetters = (offset: number) => {
+    const idx1 = (seed + offset) % 26;
+    const idx2 = (seed + offset + 7) % 26;
+    return letters[idx1] + letters[idx2];
+  };
+
+  const getNumbers = (offset: number) => {
+    return (100 + ((seed * (offset + 1)) % 900)).toString();
+  };
+
+  return `${productId}-${getLetters(0)}${getNumbers(1)}-${getLetters(13)}${getNumbers(2)}`;
+};
+
 interface AccordionItem {
   id: string
   icon: React.ReactNode
@@ -116,8 +135,13 @@ const complianceData: AccordionItem[] = [
   },
 ]
 
-export function PageDPPSection4() {
+interface PageDPPSection4Props {
+  productId: string;
+}
+
+export function PageDPPSection4({ productId }: PageDPPSection4Props) {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null)
+  const certificateCode = generateCertificateCode(productId)
 
   const toggleAccordion = (id: string) => {
     setOpenAccordion(openAccordion === id ? null : id)
@@ -181,14 +205,14 @@ export function PageDPPSection4() {
         </div>
         <div className="text-center md:text-right">
           <p className="font-serif text-sm text-foreground mb-1">LOUIS VUITTON</p>
-          <p>© 2026 Louis Vuitton Malletier</p>
+          <p>2026 Louis Vuitton</p>
         </div>
       </div>
 
       {/* DPP ID */}
       <div className="mt-12 text-center">
         <p className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground/60">
-          DPP ID: LV-DPP-2026-M48864-FR-001
+          DPP ID: {certificateCode}
         </p>
       </div>
     </footer>

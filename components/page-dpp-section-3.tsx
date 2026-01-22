@@ -115,6 +115,15 @@ export function PageDPPSection3() {
                 <ChevronRight className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
+
+            {/* Transfer Ownership Banner */}
+            <div className="mt-16 bg-background/50 border border-divider p-8 md:p-10 rounded-lg text-center max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto">
+                <h4 className="font-serif text-lg md:text-xl">Transfer Ownership</h4>
+                <p className="mt-2 text-sm text-muted-foreground max-w-sm mx-auto">
+                    You can securely transfer the ownership of this digital certificate to another person.
+                </p>
+                <Button variant="outline" className="mt-6">Initiate Transfer</Button>
+            </div>
           </>
         ) : (
           <div className="text-center max-w-md mx-auto">

@@ -32,7 +32,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <PageDPPSection1 product={product} />
       <PageDPPSection2 product={product} />
       <PageDPPSection3 />
-      <PageDPPSection4 />
+      <PageDPPSection4 productId={product.id} />
     </main>
   );
 }
