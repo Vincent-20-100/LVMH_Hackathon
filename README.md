@@ -51,10 +51,10 @@ graph TD
 
     %% ──────────────────────────────────────────────
     %% Styles
-    classDef public    fill:#d1fae5,stroke:#059669,stroke-width:2.5px
-    classDef user      fill:#fef3c7,stroke:#d97706,stroke-width:2.5px
-    classDef backend   fill:#e9d5ff,stroke:#b95cdb,stroke-width:2.5px
-    classDef newuser   fill:#c3d1f7,stroke:#2c5de6,stroke-width:2.5px
+    classDef public    fill:#d1fae5,stroke:#059669,stroke-width:2.5px,color:#000
+    classDef user      fill:#fef3c7,stroke:#d97706,stroke-width:2.5px,color:#000
+    classDef backend   fill:#e9d5ff,stroke:#b95cdb,stroke-width:2.5px,color:#000
+    classDef newuser   fill:#c3d1f7,stroke:#2c5de6,stroke-width:2.5px,color:#000
 
     class B,C public
     class A,D,E,H user
