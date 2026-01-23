@@ -83,31 +83,31 @@ The repository is organized as follows:
 
 ```
 .
-├── public/                       # Static assets served directly
-│   └── products/                 # Product-specific images (organized by slug)
-│       └── [product-slug]/       # Directory for each product's images (e.g., front.avif, side.avif)
-├── app/                          # Next.js App Router root
-│   ├── page.tsx                  # Root page, redirects to /collection
-│   ├── products/[slug]/page.tsx  # Dynamic route for individual Digital Product Passports
-│   ├── account-creation/page.tsx # User account creation/login form
-│   └── collection/page.tsx       # User's personalized product collection dashboard
-├── components/                   # Reusable UI components
-│   ├── page-dpp-section-[1-4].tsx  # Modular sections composing the DPP page
-│   ├── feature-certificate-card.tsx   # Interactive 3D product certificate component
-│   ├── feature-collection-grid.tsx       # Displays user's product collection and empty slots
-│   └── ...                       # Other shared features and UI elements
-├── contexts/                     # React Context providers for global state
-│   └── user-context.tsx          # Manages user authentication and product ownership state
-├── hooks/                        # Custom React hooks
-│   └── use-mobile.ts             # Hook to detect mobile devices
-├── lib/                          # Utility functions and data
-│   └── products.ts               # Product data definitions and access helpers (e.g., getProductBySlug)
-├── python/                       # Python utilities
-│   ├── QR-code_generator.py      # Script to generate QR codes for DPP pages
-│   └── DPP-qr-code.png           # Generated QR code image
-└── docs/                         # Project documentation and resources
-    ├── PROJECT_CONTEXT.md        # Comprehensive project overview
-    └── ...                       # Other documentation files
+├── public/                             # Static assets served directly
+│   └── products/                       # Product-specific images (organized by slug)
+│       └── [product-slug]/             # Directory for each product's images (e.g., front.avif, side.avif)
+├── app/                                # Next.js App Router root
+│   ├── page.tsx                        # Root page, redirects to /collection
+│   ├── products/[slug]/page.tsx        # Dynamic route for individual Digital Product Passports
+│   ├── account-creation/page.tsx       # User account creation/login form
+│   └── collection/page.tsx             # User's personalized product collection dashboard
+├── components/                         # Reusable UI components
+│   ├── page-dpp-section-[1-4].tsx      # Modular sections composing the DPP page
+│   ├── feature-certificate-card.tsx    # Interactive 3D product certificate component
+│   ├── feature-collection-grid.tsx     # Displays user's product collection and empty slots
+│   └── ...                             # Other shared features and UI elements
+├── contexts/                           # React Context providers for global state
+│   └── user-context.tsx                # Manages user authentication and product ownership state
+├── hooks/                              # Custom React hooks
+│   └── use-mobile.ts                   # Hook to detect mobile devices
+├── lib/                                # Utility functions and data
+│   └── products.ts                     # Product data definitions and access helpers (e.g., getProductBySlug)
+├── python/                             # Python utilities
+│   ├── QR-code_generator.py            # Script to generate QR codes for DPP pages
+│   └── DPP-qr-code.png                 # Generated QR code image
+└── docs/                               # Project documentation and resources
+    ├── PROJECT_CONTEXT.md              # Comprehensive project overview
+    └── ...                             # Other documentation files
 ```
 
 ## 📱 QR Code Generation
