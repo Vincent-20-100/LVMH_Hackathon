@@ -4,7 +4,7 @@ A project for the LVMH Hackathon at Albert School, aiming to transform the Digit
 
 ## 🎯 Project Vision
 
-Our vision is to transform the mandatory disclosure of the Digital Product Passport into a powerful lever for trust, prestige, and long-term client engagement for Louis Vuitton. We've created a comprehensive framework and strategic roadmap that integrates technical architecture with a premium user experience, turning regulatory mandates into brand opportunities.
+Our vision is to transform the mandatory disclosure of the Digital Product Passport into a powerful lever for trust, prestige, and long-term client engagement for the maison Louis Vuitton. We've created a comprehensive framework and strategic roadmap that integrates technical architecture with a premium user experience, turning regulatory mandates into brand opportunities.
 
 ## ❤️ Core Concept: Emotional Encrage
 
