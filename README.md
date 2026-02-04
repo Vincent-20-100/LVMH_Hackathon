@@ -166,6 +166,6 @@ To run this project on your local machine, follow these steps:
 
 ## 🌐 Deployment
 
-This project is designed for seamless deployment as a static site on **GitHub Pages**. This serverless approach was chosen for its high performance and cost-effectiveness, making it an ideal solution for a proof-of-concept. The repository can be cloned and the directory can be served statically without any complex installation.
+This project is designed for seamless deployment as a static site on **GitHub Pages**. This serverless approach was chosen for its high performance and cost-effectiveness, making it an ideal solution for a proof-of-concept. The repository can be cloned and the directory can be served statically without any complex installation. 
 
 [---> ACCESS TO THE DEPLOYED WEBSITE HERE <---](https://vincent-20-100.github.io/LVMH_Hackathon/)
